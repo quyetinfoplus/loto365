@@ -1,3 +1,48 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane>
+    <ion-menu class="menu" menu-id="sideMenu" swipe-gesture="false">
+      <ion-header>
+        <ion-toolbar class="toolbar-menu">
+          <label>Loto 365</label>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="content-menu">
+        <ion-list class="list-menu">
+          <ion-item mode="md" class="item-sidemenu" (click)="onSideMenuClick('auto_pay')" detail button>
+            <ion-label color="primary">
+              Select 1
+            </ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-item>
+          <ion-item mode="md" class="item-sidemenu" (click)="onSideMenuClick('change_pin')" detail button>
+            <ion-label color="primary">
+              Select 2
+            </ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-item>
+          <ion-item mode="md" class="item-sidemenu" (click)="onSideMenuClick('change_lang')" detail button>
+            <ion-label color="primary">
+              Select 3
+            </ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+      <div class="version-menu">
+        <ion-text style="font-size: 13px;color:grey;margin-left:5%">Version 1.25.25</ion-text>
+      </div>
+      <ion-footer>
+        <ion-item class="footer-menu" lines="none" (click)="onSideMenuClick('logout')" button>
+          <ion-icon slot="start" name="log-out"></ion-icon>
+          <ion-label>
+            <div>
+              <ion-text>Log out</ion-text>
+            </div>
+          </ion-label>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+      </ion-footer>
+    </ion-menu>
+    <ion-router-outlet id="content" main></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

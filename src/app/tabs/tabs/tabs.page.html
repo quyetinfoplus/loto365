@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false" class="icon-toolbar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title mode="ios" class=" text-toolbar">Loto 365</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-tabs mode="md">
+    <ion-tab-bar mode="md" slot="bottom" class="tab-bar">
+      <ion-tab-button tab="home" button (click)="clickKQ()">
+        <ion-icon name="grid" [style.color] = "colorKQ"></ion-icon>
+        <ion-labe [style.color] = "colorKQ"l>Kết Quả</ion-label>
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-tab-button>
+      <ion-tab-button tab="home" button (click)="clickTD()">
+        <ion-icon name="wifi" [style.color] = "colorTD"></ion-icon>
+        <ion-label [style.color] = "colorTD">Theo Dõi</ion-label>
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-tab-button>
+      <ion-tab-button tab="home" button (click)="clickPT()">
+        <ion-icon name="git-compare" [style.color] = "colorPT"></ion-icon>
+        <ion-label [style.color] = "colorPT">Phân Tích</ion-label>
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-tab-button>
+      <ion-tab-button tab="home" button (click)="clickChat()">
+        <ion-icon name="chatbubbles" [style.color] = "colorChat"></ion-icon>
+        <ion-label [style.color] = "colorChat">Chat</ion-label>
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>
