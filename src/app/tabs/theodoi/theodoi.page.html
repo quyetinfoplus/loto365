@@ -1,0 +1,96 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="dots"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let theodoiArray of theodoiArrays;  let i = index" class="card">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="8">
+          <ion-label class="label-name-theo-doi">{{theodoiArray.name}}</ion-label>
+        </ion-col>
+        <ion-col class="col-time-theo-doi">
+          <ion-label class="label-time-theo-doi">{{i}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">
+          <ion-label class="label-lo-theo-doi">Lô: </ion-label>
+          <ion-label class="label-result">{{theodoiArray.lo}}</ion-label>
+        </ion-col>
+        <ion-col size="3.5">
+          <ion-label class="label-lo-theo-doi">Lô Đầu: </ion-label>
+          <ion-label class="label-result">{{theodoiArray.lodau}}</ion-label>
+        </ion-col>
+        <ion-col size="3.5">
+          <ion-label class="label-lo-theo-doi">Lô Đít: </ion-label>
+          <ion-label class="label-result">{{theodoiArray.lodit}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label class="label-de-theo-doi">Đề: </ion-label>
+          <ion-label class="label-result">{{theodoiArray.de}}</ion-label>
+        </ion-col>
+        <ion-col size="3.5">
+          <ion-label class="label-de-theo-doi">Đề đầu: </ion-label>
+          <ion-label class="label-result">{{theodoiArray.dedau}}</ion-label>
+        </ion-col>
+        <ion-col size="3.5">
+          <ion-label class="label-de-theo-doi">Đề đít: </ion-label>
+          <ion-label class="label-result">{{theodoiArray.dedit}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">
+          <ion-label class="label-lo-theo-doi">BT Lô: </ion-label>
+          <ion-label class="label-result">{{theodoiArray.lobt}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label class="label-lo-theo-doi">Rate Lô: </ion-label>
+          <ion-label class="label-result" *ngIf="theodoiArray.ratio_lobt !== ''">({{theodoiArray.ratio_lobt}})
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5">
+          <ion-label class="label-de-theo-doi">BT Đề: </ion-label>
+          <ion-label class="label-result">{{theodoiArray.debt}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label class="label-de-theo-doi">Rate Đề: </ion-label>
+          <ion-label class="label-result" *ngIf="theodoiArray.ratio_debt !== ''">({{theodoiArray.ratio_debt}})
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadDataTheoDoi($event)"
+    *ngIf="theodoiArrays.length > 0 && !isError">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Load more...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-row justify-content-center align-items-center style='height: 100%' *ngIf="theodoiArrays.length <= 0">
+    <ion-spinner class="spinner" name="crescent" *ngIf="isFirstTimeLoading"></ion-spinner>
+
+    <div class="no-data" *ngIf="noData">
+      <ion-img class="img-nodata" src="assets/img/nodata.png"></ion-img>
+      <ion-text>No data</ion-text>
+    </div>
+    <div class="error-info" *ngIf="errorinfo">
+      <ion-text>Error happens.Try again !</ion-text>
+      <br>
+      <ion-button shape="round" color="light" (click)="retry()">
+        Try again
+      </ion-button>
+    </div>
+    <div class="try-again-button" *ngIf="errorinfo && requestlists.length > 0">
+      <ion-text>Error happens.Try again !</ion-text>
+      <br>
+      <ion-button shape="round" color="light" (click)="retry()">
+        Try again
+      </ion-button>
+    </div>
+  </ion-row>
+</ion-content>
