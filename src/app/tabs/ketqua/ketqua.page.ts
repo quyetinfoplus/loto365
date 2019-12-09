@@ -117,9 +117,9 @@ export class KetquaPage implements OnInit {
         break;
     }
     if (this.date.getDate() > 10) {
-      this.day = (this.date.getDate() - 1).toString();
+      this.day = (this.date.getDate()).toString();
     } else {
-      this.day = '0' + (this.date.getDate() - 1).toString();
+      this.day = '0' + (this.date.getDate()).toString();
     }
     if (this.date.getMonth() + 1 > 10) {
       this.month = (this.date.getMonth() + 1).toString();
