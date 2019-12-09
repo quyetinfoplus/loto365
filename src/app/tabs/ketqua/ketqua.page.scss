@@ -1,0 +1,161 @@
+ion-content {
+    --ion-background-color: #dee4ed;
+}
+
+ion-header {
+    background-color: #dee4ed;
+}
+
+.segment-content {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.segment {
+  --color: darkslategray;
+  --background-checked: darkslategray;
+  --border-color: darkslategray;
+  --color-checked: #FFFFFF;
+  --border-width: 1px;
+  --background: #ffffff;
+}
+
+.col-arrow-back {
+    text-align: left;
+}
+
+.col-arrow-forward {
+    text-align: right;
+}
+
+.col-arrow-datetime {
+    text-align: center;
+}
+
+.arrow-forward {
+    font-size: 24px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.arrow-back {
+    font-size: 24px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.grid-date-time {
+    background-color: darkslategray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 1%;
+}
+
+.grid-kq {
+    background-color: #FFFFFF;
+}
+
+.txt-date-time {
+    color: #FFFFFF;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+.col-center {
+    text-align: center;
+}
+
+.row-kq {
+    border-bottom: 1px inset #b0bec5;
+    border-right: 1px inset #b0bec5;
+}
+
+.col-center-giai {
+    text-align: center;
+    border-right: 1px inset #b0bec5;
+    border-left: 1px inset #b0bec5;
+}
+
+.col-center-dacbiet {
+    text-align: center;
+    border-top: 1px inset #b0bec5;
+}
+
+.col-center-giai-dacbiet {
+    text-align: center;
+    border-top: 1px inset #b0bec5;
+    border-right: 1px inset #b0bec5;
+    border-left: 1px inset #b0bec5;
+}
+
+.col-center-in {
+    text-align: center;
+    border-right: 1px inset #b0bec5;
+}
+
+.col-two-row {
+    border-bottom: 1px inset #b0bec5;
+}
+
+.txt-dacbiet {
+    color: red;
+    font-size: 16px;
+    font-family: 'Roboto';
+}
+
+.txt-giai {
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Roboto';
+}
+
+.txt-value-dacbiet {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.txt-value-giai {
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.row-dau-duoi {
+    color: #FFFFFF;
+    background-color: darkslategray;
+    border-bottom: 1px inset darkslategray;
+    border-top: 1px inset darkslategray;
+    border-right: 1px inset darkslategray;
+    border-left: 1px inset darkslategray;
+    font-weight: bold;
+}
+
+.col-center-border-left {
+    text-align: center;
+    border-left: 1px inset darkslategray;
+    border-bottom: 1px inset darkslategray;
+}
+
+.col-center-right {
+    text-align: center;
+    border-left: 1px inset darkslategray;
+    border-bottom: 1px inset darkslategray;
+    border-right: 1px inset darkslategray;
+}
+
+.img-calendar {
+    width: 30px;
+    height: 20px;
+}
+
+.itemDateTime {
+    --background: darkslategray ;
+    color: #FFFFFF;
+    margin-left: 15%;
+    font-weight: 600;
+}
+
+
+
+
