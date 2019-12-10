@@ -1,5 +1,7 @@
 {
   "name": "Loto365",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
