@@ -80,6 +80,8 @@ export class KetquaPage implements OnInit {
   error: boolean;
   isFirstTimeLoading: boolean;
   onShowGridMB: boolean;
+  previousYdm: any;
+  hour: number;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
@@ -92,7 +94,6 @@ export class KetquaPage implements OnInit {
     this.originMonth = this.date.getMonth() + 1;
     this.originYear = this.date.getFullYear();
     this.thu = this.date.getDay() + 1;
-    this.modelDate = '11-09-2019';
     switch (this.thu) {
       case 2:
         this.thu = 'Thứ Hai';
@@ -117,9 +118,14 @@ export class KetquaPage implements OnInit {
         break;
     }
     if (this.date.getDate() > 10) {
-      this.day = (this.date.getDate()).toString();
+      this.day = this.date.getDate().toString();
     } else {
       this.day = '0' + (this.date.getDate()).toString();
+    }
+    if ((this.date.getDate() - 1) > 10) {
+      this.previousDay = (this.date.getDate() - 1).toString();
+    } else {
+      this.previousDay = '0' + (this.date.getDate() - 1).toString();
     }
     if (this.date.getMonth() + 1 > 10) {
       this.month = (this.date.getMonth() + 1).toString();
@@ -128,6 +134,8 @@ export class KetquaPage implements OnInit {
     }
     this.year = this.date.getFullYear();
     this.ymd = this.year + '-' + this.month + '-' + this.day;
+    this.previousYdm = this.year + '-' + this.month + '-' + this.previousDay;
+    this.hour = this.date.getHours();
   }
 
   ngOnInit() {
@@ -138,7 +146,13 @@ export class KetquaPage implements OnInit {
     this.isError = true;
     this.isFirstTimeLoading = true;
     this.selectedSegment = 'mienbac';
-    this.reloadDataMienBac(this.ymd);
+    if (this.hour > 19) {
+      this.reloadDataMienBac(this.ymd);
+      this.modelDate = this.ymd;
+    } else {
+      this.reloadDataMienBac(this.previousYdm);
+      this.modelDate = this.previousYdm;
+    }
   }
 
   loadData(ngaychot) {
