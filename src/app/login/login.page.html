@@ -1,0 +1,19 @@
+<ion-content>
+  <div class="div-center">
+    <ion-text class="title-app">Rong Back Kim</ion-text>
+  </div>
+  <ion-grid class="grid">
+    <ion-row class="col-google" (click)="loginGoogle()">
+      <ion-col>
+        <ion-icon class="icon" name="logo-googleplus"></ion-icon>
+        <ion-label class="title-login">Đăng nhập bằng Google</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="col-facebook"  (click)="loginFb()">
+      <ion-col>
+        <ion-icon class="icon" name="logo-facebook"></ion-icon>
+        <ion-label class="title-login">Đăng nhập bằng Facebook</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
