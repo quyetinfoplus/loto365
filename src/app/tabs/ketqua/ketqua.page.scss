@@ -1,9 +1,9 @@
 ion-content {
-    --ion-background-color: #dee4ed;
+    --ion-background-color: #FFFFFF;
 }
 
 ion-header {
-    background-color: #dee4ed;
+    background-color: #FFFFFF;
 }
 
 .segment-content {
@@ -154,6 +154,48 @@ ion-header {
     color: #FFFFFF;
     margin-left: 15%;
     font-weight: 600;
+}
+
+.item-date-trending {
+    --background: #eeeeee ;
+}
+
+.row-header-trending {
+    background-color: #eeeeee;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px double grey;
+}
+
+.row-content-trending {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px double grey;
+}
+
+.date-trending {
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.txt-title-trending {
+    max-width: 150px;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.text-trending {
+    color: darkslategray;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.xem-them {
+    margin-left: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: underline;
 }
 
 

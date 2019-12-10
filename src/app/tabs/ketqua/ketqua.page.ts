@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { RequestService } from 'src/app/service/request.service';
 import { LocalstorageService } from 'src/app/service/localstorage.service';
 import { EnvService } from 'src/app/service/env.service';
-
+import ValidationUtil from 'src/app/service/util/validation';
 @Component({
   selector: 'app-ketqua',
   templateUrl: './ketqua.page.html',
@@ -82,12 +82,22 @@ export class KetquaPage implements OnInit {
   onShowGridMB: boolean;
   previousYdm: any;
   hour: number;
+  onShowShortTrending: boolean;
+  onShowLongTrending: boolean;
+  dateCurrent: string;
+  arrayTrendingOrigin: any;
+  arrayTrending = [];
+  arrayTrendingShort = [];
+  arrayTrendinglong = [];
+  valueDateTrending: any;
+  onLoadingTrending: boolean;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
     private localStorageService: LocalstorageService,
     private envService: EnvService
   ) {
+    this.dateCurrent = this.datepipe.transform(this.date, 'yyyy-MM-dd');
     this.isError = true;
     this.originThu = this.date.getDay() + 1;
     this.originDay = this.date.getDate();
@@ -117,7 +127,7 @@ export class KetquaPage implements OnInit {
         this.thu = 'Chủ Nhật';
         break;
     }
-    if (this.date.getDate() > 10) {
+    if (this.date.getDate() >= 10) {
       this.day = this.date.getDate().toString();
     } else {
       this.day = '0' + (this.date.getDate()).toString();
@@ -142,6 +152,7 @@ export class KetquaPage implements OnInit {
   }
 
   ionViewWillEnter(): void {
+    this.onShowShortTrending = true;
     this.onShowGridMB = false;
     this.isError = true;
     this.isFirstTimeLoading = true;
@@ -153,6 +164,42 @@ export class KetquaPage implements OnInit {
       this.reloadDataMienBac(this.previousYdm);
       this.modelDate = this.previousYdm;
     }
+    this.onReloadTrending(this.ymd);
+  }
+
+  loadTrending(ngaychot) {
+    const urlTrending = this.envService.API_URL + this.envService.URL_LOAD_DATA_TRENDING;
+    const params = [];
+    params.push({key: 'ngaychot', value: ngaychot});
+    this.requestService.get(urlTrending, params, undefined,
+      (data) => this.onSuccessTrending(data),
+      (error) => this.onErrorTrending(error),
+      () => {});
+  }
+  onErrorTrending(error: any) {
+    this.onLoadingTrending = false;
+    console.log(error);
+  }
+
+  onSuccessTrending(data: any) {
+    this.onLoadingTrending = false;
+    this.arrayTrendingOrigin = data.lotto.replace(/[^a-zA-Z0-9]/g, '');
+    for (let index = 0; index < this.arrayTrendingOrigin.length / 2; index++) {
+      this.arrayTrending.push(this.arrayTrendingOrigin.substr(index * 2, 2));
+    }
+    this.arrayTrendingShort = this.arrayTrending.slice(0, 20);
+  }
+
+  onChangeDateTimeTrending(event) {
+    this.onLoadingTrending = true;
+    this.valueDateTrending = this.datepipe.transform(event.target.value, 'yyyy-MM-dd');
+    this.onReloadTrending(this.valueDateTrending);
+  }
+
+  onReloadTrending(ngaychot) {
+    this.arrayTrending = [];
+    this.arrayTrendingShort = [];
+    this.loadTrending(ngaychot);
   }
 
   loadData(ngaychot) {
@@ -284,7 +331,7 @@ export class KetquaPage implements OnInit {
       this.mienbacShow = true;
       this.miennamShow = false;
       this.mientrungShow = false;
-    }
+    } 
     if (this.selectedSegment === 'mientrung') {
       this.mienbacShow = false;
       this.mientrungShow = true;
@@ -295,6 +342,23 @@ export class KetquaPage implements OnInit {
       this.mientrungShow = false;
       this.miennamShow = true;
     }
+  }
+
+  doRefresh(event) {
+    setTimeout(() => {
+      event.target.complete();
+      if (ValidationUtil.isEmptyStr(this.valueDate)) {
+        if (this.hour > 19) {
+          this.reloadDataMienBac(this.ymd);
+          this.valueDate = this.ymd;
+        } else {
+          this.reloadDataMienBac(this.previousYdm);
+          this.valueDate = this.previousYdm;
+        }
+      } else {
+        this.reloadDataMienBac(this.valueDate);
+      }
+    }, 500);
   }
 
   onClickArrowBack() {
@@ -335,11 +399,38 @@ export class KetquaPage implements OnInit {
   }
 
   onChangeDateTime(event) {
-    this.valueDate = this.datepipe.transform(event.target.value, 'dd-MM-yyyy');
+    this.valueDate = this.datepipe.transform(event.target.value, 'yyyy-MM-dd');
     this.reloadDataMienBac(this.valueDate);
   }
 
   reloadDataMienBac(ngaychot) {
+    this.kqDB = '';
+    this.kqNhat = '';
+    this.kqNhi1 = '';
+    this.kqNhi2 = '';
+    this.kqBa1 = '';
+    this.kqBa2 = '';
+    this.kqBa3 = '';
+    this.kqBa4 = '';
+    this.kqBa5 = '';
+    this.kqBa6 = '';
+    this.kqTu1 = '';
+    this.kqTu2 = '';
+    this.kqTu3 = '';
+    this.kqTu4 = '';
+    this.kqNam1 = '';
+    this.kqNam2 = '';
+    this.kqNam3 = '';
+    this.kqNam4 = '';
+    this.kqNam5 = '';
+    this.kqNam6 = '';
+    this.kqSau1 = '';
+    this.kqSau2 = '';
+    this.kqSau3 = '';
+    this.kqBay1 = '';
+    this.kqBay2 = '';
+    this.kqBay3 = '';
+    this.kqBay4 = '';
     this.arrayKq = [];
     this.arrayDau0 = [];
     this.arrayDau1 = [];
@@ -362,5 +453,15 @@ export class KetquaPage implements OnInit {
     this.arrayDit8 = [];
     this.arrayDit9 = [];
     this.loadData(ngaychot);
+  }
+
+  onshowMore() {
+    this.onShowLongTrending = true;
+    this.onShowShortTrending = false;
+  }
+
+  onNoShow() {
+    this.onShowLongTrending = false;
+    this.onShowShortTrending = true;
   }
 }

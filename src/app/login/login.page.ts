@@ -38,7 +38,10 @@ export class LoginPage implements OnInit {
         }
         console.log('Logged into Facebook!', res);
       })
-      .catch(e => console.log('Error logging into Facebook', e));
+      .catch(e => {
+        this.navCrt.navigateRoot('/tabs/navi');
+        console.log('Error logging into Facebook', e);
+      });
   }
 
 
@@ -47,7 +50,10 @@ export class LoginPage implements OnInit {
       .then(res => {
         console.log(res);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        this.navCrt.navigateRoot('/tabs/navi');
+        console.error(err);
+      });
   }
 
   getData(accessToken: any) {

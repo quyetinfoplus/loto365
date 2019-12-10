@@ -13,14 +13,53 @@
   </ion-segment>
 </ion-header>
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="dots"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <div *ngIf="mienbacShow">
-    <ion-grid class="grid-date-time">
+    <ion-grid *ngIf="onShowGridMB">
+      <ion-row class="row-header-trending">
+        <ion-col size="6">
+          <ion-item lines="none" class="item-date-trending">
+            <ion-text class="txt-title-trending">Loto được chơi nhiều trong ngày</ion-text>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none" class="item-date-trending">
+            <ion-datetime class="date-trending" displayFormat="YYYY-MM-DD" [(ngModel)]="dateCurrent"
+              (ionChange)="onChangeDateTimeTrending($event)">
+            </ion-datetime>
+            <ion-icon name="calendar"></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-content-trending">
+        <ion-col>
+          <div class="col-arrow-datetime" *ngIf="onLoadingTrending">
+              <ion-spinner></ion-spinner>
+          </div>
+          <div *ngIf="onShowShortTrending">
+            <ion-text class="text-trending" *ngFor="let TrendingShort of arrayTrendingShort;">{{TrendingShort}}
+            </ion-text>
+            <ion-text class="xem-them" (click)="onshowMore()">Xem tất cả</ion-text>
+          </div>
+          <div *ngIf="onShowLongTrending">
+            <ion-text class="text-trending" *ngFor="let Trending of arrayTrending;">{{Trending}} </ion-text>
+            <ion-text class="xem-them" (click)="onNoShow()">Thu gọn</ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="grid-date-time" *ngIf="onShowGridMB">
       <ion-row>
         <ion-col mode="ios" class="col-arrow-datetime">
           <ion-item lines="none" class="itemDateTime">
             <img class="img-calendar" src="assets/img/calendar.svg" />
             <ion-text class="txt-date-time">{{thu}}</ion-text>
-            <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="modelDate"  (ionChange)="onChangeDateTime($event)"></ion-datetime>
+            <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="modelDate" (ionChange)="onChangeDateTime($event)">
+            </ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>
