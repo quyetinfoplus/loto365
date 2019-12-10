@@ -8,6 +8,15 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'ketqua',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../../tabs/ketqua/ketqua.module').then(m => m.KetquaPageModule)
+          }
+        ]
+      },
+      {
         path: 'theodoi',
         children: [
           {
@@ -20,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/navi/theodoi',
+    redirectTo: '/tabs/navi/ketqua',
     pathMatch: 'full'
   }
 ];

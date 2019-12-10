@@ -1,0 +1,301 @@
+<ion-header>
+  <ion-segment mode="ios" class="segment-content" [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)"
+    scrollable>
+    <ion-segment-button mode="ios" class="segment" value="mienbac" checked>
+      <ion-label class="to-do">Miền Bắc</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="ios" class="segment" value="mientrung">
+      <ion-label class="working">Miền Trung</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="ios" class="segment" value="miennam">
+      <ion-label class="done">Miền Nam</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+<ion-content>
+  <div *ngIf="mienbacShow">
+    <ion-grid class="grid-date-time">
+      <ion-row>
+        <ion-col mode="ios" class="col-arrow-datetime">
+          <ion-item lines="none" class="itemDateTime">
+            <img class="img-calendar" src="assets/img/calendar.svg" />
+            <ion-text class="txt-date-time">{{thu}}</ion-text>
+            <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="modelDate"  (ionChange)="onChangeDateTime($event)"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="grid-kq" *ngIf="onShowGridMB">
+      <ion-row class="row-kq">
+        <ion-col size="3" class="col-center-giai-dacbiet">
+          <ion-text class="txt-dacbiet">Đặc Biệt</ion-text>
+        </ion-col>
+        <ion-col size="9" class="col-center-dacbiet">
+          <ion-text class="txt-value-dacbiet">{{kqDB}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-kq">
+        <ion-col size="3" class="col-center-giai">
+          <ion-text class="txt-giai">Giải Nhất</ion-text>
+        </ion-col>
+        <ion-col size="9" class="col-center">
+          <ion-text class="txt-value-giai">{{kqNhat}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-kq">
+        <ion-col size="3" class="col-center-giai">
+          <ion-text class="txt-giai">Giải Nhì</ion-text>
+        </ion-col>
+        <ion-col size="4.5" class="col-center-in">
+          <ion-text class="txt-value-giai">{{kqNhi1}}</ion-text>
+        </ion-col>
+        <ion-col size="4.5" class="col-center">
+          <ion-text class="txt-value-giai">{{kqNhi2}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-kq">
+        <ion-col size="3" class="col-center-giai">
+          <ion-text class="txt-giai">Giải Ba</ion-text>
+        </ion-col>
+        <ion-col size="9" class="col-center">
+          <ion-row>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqBa1}}</ion-text>
+            </ion-col>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqBa2}}</ion-text>
+            </ion-col>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqBa3}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqBa4}}</ion-text>
+            </ion-col>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqBa5}}</ion-text>
+            </ion-col>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqBa6}}</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-kq">
+        <ion-col size="3" class="col-center-giai">
+          <ion-text class="txt-giai">Giải Tư</ion-text>
+        </ion-col>
+        <ion-col size="2.25" class="col-center-in">
+          <ion-text class="txt-value-giai">{{kqTu1}}</ion-text>
+        </ion-col>
+        <ion-col size="2.25" class="col-center-in">
+          <ion-text class="txt-value-giai">{{kqTu2}}</ion-text>
+        </ion-col>
+        <ion-col size="2.25" class="col-center-in">
+          <ion-text class="txt-value-giai">{{kqTu3}}</ion-text>
+        </ion-col>
+        <ion-col size="2.25" class="col-center">
+          <ion-text class="txt-value-giai">{{kqTu4}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-kq">
+        <ion-col size="3" class="col-center-giai">
+          <ion-text class="txt-giai">Giải Năm</ion-text>
+        </ion-col>
+        <ion-col size="9" class="col-center">
+          <ion-row>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqNam1}}</ion-text>
+            </ion-col>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqNam2}}</ion-text>
+            </ion-col>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqNam3}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqNam4}}</ion-text>
+            </ion-col>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqNam5}}</ion-text>
+            </ion-col>
+            <ion-col class="col-center">
+              <ion-text class="txt-value-giai">{{kqNam6}}</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-kq">
+        <ion-col size="3" class="col-center-giai">
+          <ion-text class="txt-giai">Giải Sáu</ion-text>
+        </ion-col>
+        <ion-col size="3" class="col-center-in">
+          <ion-text class="txt-value-giai">{{kqSau1}}</ion-text>
+        </ion-col>
+        <ion-col size="3" class="col-center-in">
+          <ion-text class="txt-value-giai">{{kqSau2}}</ion-text>
+        </ion-col>
+        <ion-col size="3" class="col-center">
+          <ion-text class="txt-value-giai">{{kqSau3}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-kq">
+        <ion-col size="3" class="col-center-giai">
+          <ion-text class="txt-giai">Giải Bảy</ion-text>
+        </ion-col>
+        <ion-col size="2.25" class="col-center-in">
+          <ion-text class="txt-value-giai">{{kqBay1}}</ion-text>
+        </ion-col>
+        <ion-col size="2.25" class="col-center-in">
+          <ion-text class="txt-value-giai">{{kqBay2}}</ion-text>
+        </ion-col>
+        <ion-col size="2.25" class="col-center-in">
+          <ion-text class="txt-value-giai">{{kqBay3}}</ion-text>
+        </ion-col>
+        <ion-col size="2.25" class="col-center">
+          <ion-text class="txt-value-giai">{{kqBay4}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-dau-duoi">
+        <ion-col size="5" class="col-center">
+          <ion-text>Đầu</ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center">
+          <ion-text>Loto</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center">
+          <ion-text>Đuôi</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-center-border-left">
+          <ion-text class="txt-value-giai" *ngFor="let Dau0 of arrayDau0">{{Dau0}}; </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center-border-left">
+          <ion-text class="txt-value-dacbiet">0</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center-right">
+          <ion-text class="txt-value-giai" *ngFor="let Dit0 of arrayDit0">{{Dit0}}; </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-center-border-left">
+          <ion-text class="txt-value-giai" *ngFor="let Dau1 of arrayDau1">{{Dau1}}; </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center-border-left">
+          <ion-text class="txt-value-dacbiet">1</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center-right">
+          <ion-text class="txt-value-giai" *ngFor="let Dit1 of arrayDit1">{{Dit1}}; </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-center-border-left">
+          <ion-text class="txt-value-giai" *ngFor="let Dau2 of arrayDau2">{{Dau2}}; </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center-border-left">
+          <ion-text class="txt-value-dacbiet">2</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center-right">
+          <ion-text class="txt-value-giai" *ngFor="let Dit2 of arrayDit2">{{Dit2}}; </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-center-border-left">
+          <ion-text class="txt-value-giai" *ngFor="let Dau3 of arrayDau3">{{Dau3}}; </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center-border-left">
+          <ion-text class="txt-value-dacbiet">3</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center-right">
+          <ion-text class="txt-value-giai" *ngFor="let Dit3 of arrayDit3">{{Dit3}}; </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-center-border-left">
+          <ion-text class="txt-value-giai" *ngFor="let Dau4 of arrayDau4">{{Dau4}}; </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center-border-left">
+          <ion-text class="txt-value-dacbiet">4</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center-right">
+          <ion-text class="txt-value-giai" *ngFor="let Dit4 of arrayDit4">{{Dit4}}; </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-center-border-left">
+          <ion-text class="txt-value-giai" *ngFor="let Dau5 of arrayDau5">{{Dau5}}; </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center-border-left">
+          <ion-text class="txt-value-dacbiet">5</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center-right">
+          <ion-text class="txt-value-giai" *ngFor="let Dit5 of arrayDit5">{{Dit5}}; </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-center-border-left">
+          <ion-text class="txt-value-giai" *ngFor="let Dau6 of arrayDau6">{{Dau6}}; </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center-border-left">
+          <ion-text class="txt-value-dacbiet">6</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center-right">
+          <ion-text class="txt-value-giai" *ngFor="let Dit6 of arrayDit6">{{Dit6}}; </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-center-border-left">
+          <ion-text class="txt-value-giai" *ngFor="let Dau7 of arrayDau7">{{Dau7}}; </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center-border-left">
+          <ion-text class="txt-value-dacbiet">7</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center-right">
+          <ion-text class="txt-value-giai" *ngFor="let Dit7 of arrayDit7">{{Dit7}}; </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-center-border-left">
+          <ion-text class="txt-value-giai" *ngFor="let Dau8 of arrayDau8">{{Dau8}}; </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center-border-left">
+          <ion-text class="txt-value-dacbiet">8</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center-right">
+          <ion-text class="txt-value-giai" *ngFor="let Dit8 of arrayDit8">{{Dit8}}; </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-center-border-left">
+          <ion-text class="txt-value-giai" *ngFor="let Dau9 of arrayDau9">{{Dau9}}; </ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-center-border-left">
+          <ion-text class="txt-value-dacbiet">9</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-center-right">
+          <ion-text class="txt-value-giai" *ngFor="let Dit9 of arrayDit9">{{Dit9}}; </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-row justify-content-center align-items-center style='margin-top: 30%;' *ngIf="isError">
+      <ion-spinner class="spinner" name="crescent" *ngIf="isFirstTimeLoading"></ion-spinner>
+      <div class="try-again-button" *ngIf="error">
+        <ion-text>Error happens.Try again !</ion-text>
+        <br>
+        <ion-button shape="round" color="light" (click)="retry()">
+          Try again
+        </ion-button>
+      </div>
+    </ion-row>
+  </div>
+  <div *ngIf="mientrungShow">
+    <ion-text>Mien Trung</ion-text>
+  </div>
+  <div *ngIf="miennamShow">
+    <ion-text>Mien Nam</ion-text>
+  </div>
+</ion-content>
