@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { RequestService } from 'src/app/service/request.service';
 import { LocalstorageService } from 'src/app/service/localstorage.service';
 import { EnvService } from 'src/app/service/env.service';
-
+import ValidationUtil from 'src/app/service/util/validation';
 @Component({
   selector: 'app-ketqua',
   templateUrl: './ketqua.page.html',
@@ -82,12 +82,14 @@ export class KetquaPage implements OnInit {
   onShowGridMB: boolean;
   previousYdm: any;
   hour: number;
+  dateCurrent: string;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
     private localStorageService: LocalstorageService,
     private envService: EnvService
   ) {
+    this.dateCurrent = this.datepipe.transform(this.date, 'yyyy-MM-dd');
     this.isError = true;
     this.originThu = this.date.getDay() + 1;
     this.originDay = this.date.getDate();
@@ -117,17 +119,17 @@ export class KetquaPage implements OnInit {
         this.thu = 'Chủ Nhật';
         break;
     }
-    if (this.date.getDate() > 10) {
+    if (this.date.getDate() >= 10) {
       this.day = this.date.getDate().toString();
     } else {
       this.day = '0' + (this.date.getDate()).toString();
     }
-    if ((this.date.getDate() - 1) > 10) {
+    if ((this.date.getDate() - 1) >= 10) {
       this.previousDay = (this.date.getDate() - 1).toString();
     } else {
       this.previousDay = '0' + (this.date.getDate() - 1).toString();
     }
-    if (this.date.getMonth() + 1 > 10) {
+    if (this.date.getMonth() + 1 >= 10) {
       this.month = (this.date.getMonth() + 1).toString();
     } else {
       this.month = '0' + (this.date.getMonth() + 1).toString();
@@ -297,6 +299,23 @@ export class KetquaPage implements OnInit {
     }
   }
 
+  doRefresh(event) {
+    setTimeout(() => {
+      event.target.complete();
+      if (ValidationUtil.isEmptyStr(this.valueDate)) {
+        if (this.hour > 19) {
+          this.reloadDataMienBac(this.ymd);
+          this.valueDate = this.ymd;
+        } else {
+          this.reloadDataMienBac(this.previousYdm);
+          this.valueDate = this.previousYdm;
+        }
+      } else {
+        this.reloadDataMienBac(this.valueDate);
+      }
+    }, 500);
+  }
+
   onClickArrowBack() {
     if (this.originThu === 2) {
       this.originThu = 8;
@@ -335,11 +354,38 @@ export class KetquaPage implements OnInit {
   }
 
   onChangeDateTime(event) {
-    this.valueDate = this.datepipe.transform(event.target.value, 'dd-MM-yyyy');
+    this.valueDate = this.datepipe.transform(event.target.value, 'yyyy-MM-dd');
     this.reloadDataMienBac(this.valueDate);
   }
 
   reloadDataMienBac(ngaychot) {
+    this.kqDB = '';
+    this.kqNhat = '';
+    this.kqNhi1 = '';
+    this.kqNhi2 = '';
+    this.kqBa1 = '';
+    this.kqBa2 = '';
+    this.kqBa3 = '';
+    this.kqBa4 = '';
+    this.kqBa5 = '';
+    this.kqBa6 = '';
+    this.kqTu1 = '';
+    this.kqTu2 = '';
+    this.kqTu3 = '';
+    this.kqTu4 = '';
+    this.kqNam1 = '';
+    this.kqNam2 = '';
+    this.kqNam3 = '';
+    this.kqNam4 = '';
+    this.kqNam5 = '';
+    this.kqNam6 = '';
+    this.kqSau1 = '';
+    this.kqSau2 = '';
+    this.kqSau3 = '';
+    this.kqBay1 = '';
+    this.kqBay2 = '';
+    this.kqBay3 = '';
+    this.kqBay4 = '';
     this.arrayKq = [];
     this.arrayDau0 = [];
     this.arrayDau1 = [];
