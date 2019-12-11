@@ -24,6 +24,11 @@ const routes: Routes = [
             loadChildren: () => import('../../tabs/theodoi/theodoi.module').then(m => m.TheodoiPageModule)
           }
         ]
+      },
+      {
+        path: '',
+        redirectTo: '/tabs/navi/ketqua',
+        pathMatch: 'full'
       }
     ]
   },

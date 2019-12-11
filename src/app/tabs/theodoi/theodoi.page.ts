@@ -20,9 +20,17 @@ export class TheodoiPage implements OnInit {
   year: any;
   month: any;
   day: any;
+  arrayTrendingOrigin: any;
+  arrayTrending = [];
+  arrayTrendingShort = [];
+  arrayTrendinglong = [];
+  valueDateTrending: any;
+  onShowShortTrending: boolean;
+  onShowLongTrending: boolean;
   ymd: any;
   date = new Date();
   dateCurrent: any;
+  onLoadingTrending: boolean;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
@@ -45,7 +53,10 @@ export class TheodoiPage implements OnInit {
   }
 
   ionViewWillEnter(): void {
+    this.onShowShortTrending = true;
+    this.onShowLongTrending = false;
     this.reloadTheoDoi();
+    this.onReloadTrending(this.ymd);
   }
 
   reloadTheoDoi() {
@@ -53,6 +64,51 @@ export class TheodoiPage implements OnInit {
     this.theodoiArrays = [];
     this.loadDataTheoDoi(null);
     this.currentTotal += this.limit;
+  }
+
+  loadTrending(ngaychot) {
+    const urlTrending = this.envService.API_URL + this.envService.URL_LOAD_DATA_TRENDING;
+    const params = [];
+    params.push({ key: 'ngaychot', value: ngaychot });
+    this.requestService.get(urlTrending, params, undefined,
+      (data) => this.onSuccessTrending(data),
+      (error) => this.onErrorTrending(error),
+      () => { });
+  }
+  onErrorTrending(error: any) {
+    this.onLoadingTrending = false;
+    console.log(error);
+  }
+
+  onSuccessTrending(data: any) {
+    this.onLoadingTrending = false;
+    this.arrayTrendingOrigin = data.lotto.replace(/[^a-zA-Z0-9]/g, '');
+    for (let index = 0; index < this.arrayTrendingOrigin.length / 2; index++) {
+      this.arrayTrending.push(this.arrayTrendingOrigin.substr(index * 2, 2));
+    }
+    this.arrayTrendingShort = this.arrayTrending.slice(0, 20);
+  }
+
+  onReloadTrending(ngaychot) {
+    this.arrayTrending = [];
+    this.arrayTrendingShort = [];
+    this.loadTrending(ngaychot);
+  }
+
+  onChangeDateTimeTrending(event) {
+    this.onLoadingTrending = true;
+    this.valueDateTrending = this.datepipe.transform(event.target.value, 'yyyy-MM-dd');
+    this.onReloadTrending(this.valueDateTrending);
+  }
+
+  onshowMore() {
+    this.onShowLongTrending = true;
+    this.onShowShortTrending = false;
+  }
+
+  onNoShow() {
+    this.onShowLongTrending = false;
+    this.onShowShortTrending = true;
   }
 
   doRefresh(event) {

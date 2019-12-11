@@ -82,15 +82,7 @@ export class KetquaPage implements OnInit {
   onShowGridMB: boolean;
   previousYdm: any;
   hour: number;
-  onShowShortTrending: boolean;
-  onShowLongTrending: boolean;
   dateCurrent: string;
-  arrayTrendingOrigin: any;
-  arrayTrending = [];
-  arrayTrendingShort = [];
-  arrayTrendinglong = [];
-  valueDateTrending: any;
-  onLoadingTrending: boolean;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
@@ -132,12 +124,12 @@ export class KetquaPage implements OnInit {
     } else {
       this.day = '0' + (this.date.getDate()).toString();
     }
-    if ((this.date.getDate() - 1) > 10) {
+    if ((this.date.getDate() - 1) >= 10) {
       this.previousDay = (this.date.getDate() - 1).toString();
     } else {
       this.previousDay = '0' + (this.date.getDate() - 1).toString();
     }
-    if (this.date.getMonth() + 1 > 10) {
+    if (this.date.getMonth() + 1 >= 10) {
       this.month = (this.date.getMonth() + 1).toString();
     } else {
       this.month = '0' + (this.date.getMonth() + 1).toString();
@@ -152,7 +144,6 @@ export class KetquaPage implements OnInit {
   }
 
   ionViewWillEnter(): void {
-    this.onShowShortTrending = true;
     this.onShowGridMB = false;
     this.isError = true;
     this.isFirstTimeLoading = true;
@@ -164,42 +155,6 @@ export class KetquaPage implements OnInit {
       this.reloadDataMienBac(this.previousYdm);
       this.modelDate = this.previousYdm;
     }
-    this.onReloadTrending(this.ymd);
-  }
-
-  loadTrending(ngaychot) {
-    const urlTrending = this.envService.API_URL + this.envService.URL_LOAD_DATA_TRENDING;
-    const params = [];
-    params.push({key: 'ngaychot', value: ngaychot});
-    this.requestService.get(urlTrending, params, undefined,
-      (data) => this.onSuccessTrending(data),
-      (error) => this.onErrorTrending(error),
-      () => {});
-  }
-  onErrorTrending(error: any) {
-    this.onLoadingTrending = false;
-    console.log(error);
-  }
-
-  onSuccessTrending(data: any) {
-    this.onLoadingTrending = false;
-    this.arrayTrendingOrigin = data.lotto.replace(/[^a-zA-Z0-9]/g, '');
-    for (let index = 0; index < this.arrayTrendingOrigin.length / 2; index++) {
-      this.arrayTrending.push(this.arrayTrendingOrigin.substr(index * 2, 2));
-    }
-    this.arrayTrendingShort = this.arrayTrending.slice(0, 20);
-  }
-
-  onChangeDateTimeTrending(event) {
-    this.onLoadingTrending = true;
-    this.valueDateTrending = this.datepipe.transform(event.target.value, 'yyyy-MM-dd');
-    this.onReloadTrending(this.valueDateTrending);
-  }
-
-  onReloadTrending(ngaychot) {
-    this.arrayTrending = [];
-    this.arrayTrendingShort = [];
-    this.loadTrending(ngaychot);
   }
 
   loadData(ngaychot) {
@@ -331,7 +286,7 @@ export class KetquaPage implements OnInit {
       this.mienbacShow = true;
       this.miennamShow = false;
       this.mientrungShow = false;
-    } 
+    }
     if (this.selectedSegment === 'mientrung') {
       this.mienbacShow = false;
       this.mientrungShow = true;
@@ -453,15 +408,5 @@ export class KetquaPage implements OnInit {
     this.arrayDit8 = [];
     this.arrayDit9 = [];
     this.loadData(ngaychot);
-  }
-
-  onshowMore() {
-    this.onShowLongTrending = true;
-    this.onShowShortTrending = false;
-  }
-
-  onNoShow() {
-    this.onShowLongTrending = false;
-    this.onShowShortTrending = true;
   }
 }
