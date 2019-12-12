@@ -6,11 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
-  colorKQ = '#b8860b';
-  colorTD = '#FFFFFF';
-  colorPT = '#FFFFFF';
-  colorChat = '#FFFFFF';
-  constructor() { }
+  colorKQ: any;
+  colorTD: any;
+  colorPT: any;
+  colorChat: any;
+  constructor() {
+    this.colorKQ = '#b8860b';
+    this.colorTD = '#FFFFFF';
+    this.colorPT = '#FFFFFF';
+    this.colorChat = '#FFFFFF';
+  }
 
   ngOnInit() {
   }
@@ -42,5 +47,7 @@ export class TabsPage implements OnInit {
     this.colorPT = '#b8860b';
     this.colorChat = '#FFFFFF';
   }
+
+
 
 }

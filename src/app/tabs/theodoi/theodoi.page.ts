@@ -36,6 +36,7 @@ export class TheodoiPage implements OnInit {
   isSearch: boolean;
   originDateCurrent: string;
   valueDateDsChot: any;
+  ngaychot: any;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
@@ -61,16 +62,18 @@ export class TheodoiPage implements OnInit {
   ionViewWillEnter(): void {
     this.onShowShortTrending = true;
     this.onShowLongTrending = false;
-    console.log(this.ymd);
-    this.reloadTheoDoi(this.ymd);
-    this.onReloadTrending(this.ymd);
     this.isSearch = false;
+    if (ValidationUtil.isEmptyStr(this.valueDateDsChot)) {
+      this.valueDateDsChot = this.ymd;
+    }
+    this.reloadTheoDoi();
+    this.onReloadTrending(this.ymd);
   }
 
-  reloadTheoDoi(ngaychot) {
+  reloadTheoDoi() {
     this.currentTotal = 0;
     this.theodoiArrays = [];
-    this.loadDataTheoDoi(null, ngaychot);
+    this.loadDataTheoDoi(null);
     this.currentTotal += this.limit;
   }
 
@@ -122,18 +125,14 @@ export class TheodoiPage implements OnInit {
   doRefresh(event) {
     setTimeout(() => {
       event.target.complete();
-      if (ValidationUtil.isEmptyStr(this.valueDateDsChot)) {
-        this.reloadTheoDoi(this.valueDateDsChot);
-      } else {
-        this.reloadTheoDoi(this.ymd);
-      }
+      this.reloadTheoDoi();
     }, 500);
   }
 
-  loadDataTheoDoi(event, ngaychot) {
+  loadDataTheoDoi(event) {
     const urlLoadDataTheoDoi = this.envService.API_URL + this.envService.URL_LOAD_DATA_THEO_DOI;
     const params = [];
-    params.push({ key: 'ngaychot', value: ngaychot });
+    params.push({ key: 'ngaychot', value: this.valueDateDsChot });
     params.push({ key: 'limit', value: this.limit });
     params.push({ key: 'skip', value: this.currentTotal });
     this.requestService.get(urlLoadDataTheoDoi, params, undefined,
@@ -189,8 +188,6 @@ export class TheodoiPage implements OnInit {
 
   onChangeDateDsChot(event) {
     this.valueDateDsChot = this.datepipe.transform(event.target.value, 'yyyy-MM-dd');
-    this.reloadTheoDoi(this.valueDateDsChot);
+    this.reloadTheoDoi();
   }
-
-
 }
