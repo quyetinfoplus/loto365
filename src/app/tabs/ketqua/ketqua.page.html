@@ -25,7 +25,7 @@
           <ion-item lines="none" class="itemDateTime">
             <img class="img-calendar" src="assets/img/calendar.svg" />
             <ion-text class="txt-date-time">{{thu}}</ion-text>
-            <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="modelDate" (ionChange)="onChangeDateTime($event)">
+            <ion-datetime displayFormat="DD-MM-YYYY" max="{{ymd}}" [(ngModel)]="modelDate" (ionChange)="onChangeDateTime($event)">
             </ion-datetime>
           </ion-item>
         </ion-col>

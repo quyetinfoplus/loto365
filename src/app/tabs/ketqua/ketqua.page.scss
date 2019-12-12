@@ -1,9 +1,9 @@
 ion-content {
-    --ion-background-color: #FFFFFF;
+  --ion-background-color: #ffffff;
 }
 
 ion-header {
-    background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .segment-content {
@@ -12,151 +12,146 @@ ion-header {
 }
 
 .segment {
-  --color: darkslategray;
-  --background-checked: darkslategray;
-  --border-color: darkslategray;
-  --color-checked: #FFFFFF;
+  --color: #1565c0;
+  --background-checked: #1565c0;
+  --border-color: #1565c0;
+  --color-checked: #ffffff;
   --border-width: 1px;
   --background: #ffffff;
 }
 
 .col-arrow-back {
-    text-align: left;
+  text-align: left;
 }
 
 .col-arrow-forward {
-    text-align: right;
+  text-align: right;
 }
 
 .col-arrow-datetime {
-    text-align: center;
+  text-align: center;
 }
 
 .arrow-forward {
-    font-size: 24px;
-    color: #FFFFFF;
-    font-weight: bold;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .arrow-back {
-    font-size: 24px;
-    color: #FFFFFF;
-    font-weight: bold;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .grid-date-time {
-    background-color: darkslategray;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    margin-top: 1%;
+  background-color: #1565c0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-top: 1%;
 }
 
 .grid-kq {
-    background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .txt-date-time {
-    color: #FFFFFF;
-    line-height: 1.5;
-    font-weight: 600;
+  color: #ffffff;
+  line-height: 1.5;
+  font-weight: 600;
 }
 
 .col-center {
-    text-align: center;
+  text-align: center;
 }
 
 .row-kq {
-    border-bottom: 1px inset #b0bec5;
-    border-right: 1px inset #b0bec5;
+  border-bottom: 1px inset #b0bec5;
+  border-right: 1px inset #b0bec5;
 }
 
 .col-center-giai {
-    text-align: center;
-    border-right: 1px inset #b0bec5;
-    border-left: 1px inset #b0bec5;
+  text-align: center;
+  border-right: 1px inset #b0bec5;
+  border-left: 1px inset #b0bec5;
 }
 
 .col-center-dacbiet {
-    text-align: center;
-    border-top: 1px inset #b0bec5;
+  text-align: center;
+  border-top: 1px inset #b0bec5;
 }
 
 .col-center-giai-dacbiet {
-    text-align: center;
-    border-top: 1px inset #b0bec5;
-    border-right: 1px inset #b0bec5;
-    border-left: 1px inset #b0bec5;
+  text-align: center;
+  border-top: 1px inset #b0bec5;
+  border-right: 1px inset #b0bec5;
+  border-left: 1px inset #b0bec5;
 }
 
 .col-center-in {
-    text-align: center;
-    border-right: 1px inset #b0bec5;
+  text-align: center;
+  border-right: 1px inset #b0bec5;
 }
 
 .col-two-row {
-    border-bottom: 1px inset #b0bec5;
+  border-bottom: 1px inset #b0bec5;
 }
 
 .txt-dacbiet {
-    color: red;
-    font-size: 16px;
-    font-family: 'Roboto';
+  color: red;
+  font-size: 16px;
+  font-family: "Roboto";
 }
 
 .txt-giai {
-    color: #000000;
-    font-size: 16px;
-    font-family: 'Roboto';
+  color: #000000;
+  font-size: 16px;
+  font-family: "Roboto";
 }
 
 .txt-value-dacbiet {
-    color: red;
-    font-size: 18px;
-    font-weight: bold;
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .txt-value-giai {
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .row-dau-duoi {
-    color: #FFFFFF;
-    background-color: darkslategray;
-    border-bottom: 1px inset darkslategray;
-    border-top: 1px inset darkslategray;
-    border-right: 1px inset darkslategray;
-    border-left: 1px inset darkslategray;
-    font-weight: bold;
+  color: #ffffff;
+  background-color: #1565c0;
+  border-bottom: 1px inset #1565c0;
+  border-top: 1px inset #1565c0;
+  border-right: 1px inset #1565c0;
+  border-left: 1px inset #1565c0;
+  font-weight: bold;
 }
 
 .col-center-border-left {
-    text-align: center;
-    border-left: 1px inset darkslategray;
-    border-bottom: 1px inset darkslategray;
+  text-align: center;
+  border-left: 1px inset #1565c0;
+  border-bottom: 1px inset #1565c0;
 }
 
 .col-center-right {
-    text-align: center;
-    border-left: 1px inset darkslategray;
-    border-bottom: 1px inset darkslategray;
-    border-right: 1px inset darkslategray;
+  text-align: center;
+  border-left: 1px inset #1565c0;
+  border-bottom: 1px inset #1565c0;
+  border-right: 1px inset #1565c0;
 }
 
 .img-calendar {
-    width: 30px;
-    height: 20px;
+  width: 30px;
+  height: 20px;
 }
 
 .itemDateTime {
-    --background: darkslategray ;
-    color: #FFFFFF;
-    margin-left: 15%;
-    font-weight: 600;
+  --background: #1565c0;
+  color: #ffffff;
+  margin-left: 15%;
+  font-weight: 600;
 }
-
-
-
-
-

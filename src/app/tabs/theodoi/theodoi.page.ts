@@ -4,6 +4,7 @@ import { RequestService } from 'src/app/service/request.service';
 import { EnvService } from 'src/app/service/env.service';
 import { DatePipe } from '@angular/common';
 import { Theodoi } from 'src/app/model/theodoi';
+import ValidationUtil from 'src/app/service/util/validation';
 
 @Component({
   selector: 'app-theodoi',
@@ -31,13 +32,18 @@ export class TheodoiPage implements OnInit {
   date = new Date();
   dateCurrent: any;
   onLoadingTrending: boolean;
+  valueSearch: any;
+  isSearch: boolean;
+  originDateCurrent: string;
+  valueDateDsChot: any;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
     private localStorageService: LocalstorageService,
     private envService: EnvService
   ) {
-    this.dateCurrent = this.datepipe.transform(this.date, 'yyyy-MM-dd HH:mm:ss');
+    this.originDateCurrent = this.datepipe.transform(this.date, 'yyyy-MM-dd');
+    this.dateCurrent = this.datepipe.transform(this.date, 'yyyy-MM-dd');
     if (this.date.getDate() >= 10) {
       this.day = this.date.getDate().toString();
     } else {
@@ -55,14 +61,16 @@ export class TheodoiPage implements OnInit {
   ionViewWillEnter(): void {
     this.onShowShortTrending = true;
     this.onShowLongTrending = false;
-    this.reloadTheoDoi();
+    console.log(this.ymd);
+    this.reloadTheoDoi(this.ymd);
     this.onReloadTrending(this.ymd);
+    this.isSearch = false;
   }
 
-  reloadTheoDoi() {
+  reloadTheoDoi(ngaychot) {
     this.currentTotal = 0;
     this.theodoiArrays = [];
-    this.loadDataTheoDoi(null);
+    this.loadDataTheoDoi(null, ngaychot);
     this.currentTotal += this.limit;
   }
 
@@ -114,14 +122,18 @@ export class TheodoiPage implements OnInit {
   doRefresh(event) {
     setTimeout(() => {
       event.target.complete();
-      this.reloadTheoDoi();
+      if (ValidationUtil.isEmptyStr(this.valueDateDsChot)) {
+        this.reloadTheoDoi(this.valueDateDsChot);
+      } else {
+        this.reloadTheoDoi(this.ymd);
+      }
     }, 500);
   }
 
-  loadDataTheoDoi(event) {
+  loadDataTheoDoi(event, ngaychot) {
     const urlLoadDataTheoDoi = this.envService.API_URL + this.envService.URL_LOAD_DATA_THEO_DOI;
     const params = [];
-    params.push({ key: 'ngaychot', value: this.ymd });
+    params.push({ key: 'ngaychot', value: ngaychot });
     params.push({ key: 'limit', value: this.limit });
     params.push({ key: 'skip', value: this.currentTotal });
     this.requestService.get(urlLoadDataTheoDoi, params, undefined,
@@ -163,6 +175,21 @@ export class TheodoiPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onChangeSearchBar(event) {
+    this.valueSearch = '%' + event.target.value + '%';
+    if (ValidationUtil.isEmptyStr(this.valueSearch)) {
+      this.isSearch = false;
+      return;
+    }
+    this.isSearch = true;
+
+  }
+
+  onChangeDateDsChot(event) {
+    this.valueDateDsChot = this.datepipe.transform(event.target.value, 'yyyy-MM-dd');
+    this.reloadTheoDoi(this.valueDateDsChot);
   }
 
 

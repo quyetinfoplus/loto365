@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { RequestService } from 'src/app/service/request.service';
 import { LocalstorageService } from 'src/app/service/localstorage.service';
 import { EnvService } from 'src/app/service/env.service';
-import ValidationUtil from 'src/app/service/util/validation';
+import ValidationUtil from '../../service/util/validation';
 @Component({
   selector: 'app-ketqua',
   templateUrl: './ketqua.page.html',

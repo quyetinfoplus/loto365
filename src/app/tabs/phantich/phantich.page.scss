@@ -1,0 +1,127 @@
+.inputNgay {
+  border: 1px double black;
+  height: 35px;
+  color: 14px;
+  text-align: center;
+}
+
+.item-do-dai-cau {
+  --background: darkgrey;
+}
+
+.btnSoiCau {
+  height: 35px;
+  text-align: center;
+  --background: #1565c0;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  width: 30%;
+  margin-left: 35%;
+}
+
+.do-dai-cua-cau {
+  max-width: 150px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 2.5;
+  color: black;
+}
+
+.selectDodai {
+  font-size: 14px;
+  border-radius: 5px;
+  height: 95%;
+  background-color: lightblue;
+}
+
+.ngay {
+  font-size: 14px;
+  line-height: 2;
+}
+
+.tuy-chon {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 2.5;
+}
+
+.icon-dropdown {
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.col-center {
+  text-align: center;
+}
+
+.col-right {
+  text-align: right;
+}
+
+.col-left {
+  text-align: left;
+}
+
+ion-header {
+  border-bottom: 1px inset grey;
+}
+
+.ion-datetime {
+  font-size: 13px;
+  text-align: left;
+  background-color: lightblue;
+  border-radius: 5px;
+}
+
+.icon-calendar {
+  margin-top: 10px;
+}
+
+.txt-check-box {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.checkBox {
+  --background-checked: #1565c0;
+  --border-color-checked: #1565c0;
+}
+
+.row-tuychon-one {
+  background-color: aliceblue;
+}
+
+.row-tuychon-two {
+  background-color: aliceblue;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.so-ngay-cau-chay {
+  color: grey;
+  font-weight: 600;
+}
+
+.div-center {
+  text-align: center;
+  margin-top: 2%;
+}
+
+.col-cau-chay {
+  border-bottom: 3px inset grey;
+  text-align: center;
+  margin: 2px;
+}
+
+.text-kq-soi-cau {
+  font-size: 14px;
+}
+
+.div-text-kq-soi-cau {
+  padding: 10px;
+}
+
+.number {
+  font-weight: 700;
+}
