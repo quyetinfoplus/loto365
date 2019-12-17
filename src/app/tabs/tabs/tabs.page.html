@@ -1,32 +1,35 @@
 <ion-header>
   <ion-toolbar mode="ios">
-    <ion-buttons slot="start">
+    <ion-buttons mode="ios" slot="start">
       <ion-menu-button autoHide="false" class="icon-toolbar"></ion-menu-button>
     </ion-buttons>
     <ion-title mode="ios" class="text-toolbar">Rồng Bạch Kim</ion-title>
+    <ion-buttons mode="ios" slot="end">
+      <ion-icon mode="ios" name="list-box" class="icon-history" (click)="onLichSu()"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-tabs mode="md">
     <ion-tab-bar mode="md" slot="bottom" class="tab-bar">
       <ion-tab-button tab="ketqua" button (click)="clickKQ()">
-        <ion-icon name="grid" [style.color] = "colorKQ"></ion-icon>
-        <ion-label [style.color] = "colorKQ">Kết Quả</ion-label>
+        <ion-icon name="grid" [style.color]="colorKQ"></ion-icon>
+        <ion-label [style.color]="colorKQ">Kết Quả</ion-label>
         <ion-ripple-effect></ion-ripple-effect>
       </ion-tab-button>
       <ion-tab-button tab="theodoi" button (click)="clickTD()">
-        <ion-icon name="wifi" [style.color] = "colorTD"></ion-icon>
-        <ion-label [style.color] = "colorTD">Theo Dõi</ion-label>
+        <ion-icon name="wifi" [style.color]="colorTD"></ion-icon>
+        <ion-label [style.color]="colorTD">Theo Dõi</ion-label>
         <ion-ripple-effect></ion-ripple-effect>
       </ion-tab-button>
-      <ion-tab-button tab="home" button (click)="clickPT()">
-        <ion-icon name="git-compare" [style.color] = "colorPT"></ion-icon>
-        <ion-label [style.color] = "colorPT">Phân Tích</ion-label>
+      <ion-tab-button tab="phantich" button (click)="clickPT()">
+        <ion-icon name="git-compare" [style.color]="colorPT"></ion-icon>
+        <ion-label [style.color]="colorPT">Phân Tích</ion-label>
         <ion-ripple-effect></ion-ripple-effect>
       </ion-tab-button>
       <ion-tab-button tab="home" button (click)="clickChat()">
-        <ion-icon name="chatbubbles" [style.color] = "colorChat"></ion-icon>
-        <ion-label [style.color] = "colorChat">Chat</ion-label>
+        <ion-icon name="chatbubbles" [style.color]="colorChat"></ion-icon>
+        <ion-label [style.color]="colorChat">Chat</ion-label>
         <ion-ripple-effect></ion-ripple-effect>
       </ion-tab-button>
     </ion-tab-bar>
