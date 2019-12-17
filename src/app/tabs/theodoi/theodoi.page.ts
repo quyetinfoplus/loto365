@@ -4,6 +4,7 @@ import { RequestService } from 'src/app/service/request.service';
 import { EnvService } from 'src/app/service/env.service';
 import { DatePipe } from '@angular/common';
 import { Theodoi } from 'src/app/model/theodoi';
+import ValidationUtil from 'src/app/service/util/validation';
 
 @Component({
   selector: 'app-theodoi',
@@ -31,13 +32,19 @@ export class TheodoiPage implements OnInit {
   date = new Date();
   dateCurrent: any;
   onLoadingTrending: boolean;
+  valueSearch: any;
+  isSearch: boolean;
+  originDateCurrent: string;
+  valueDateDsChot: any;
+  ngaychot: any;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
     private localStorageService: LocalstorageService,
     private envService: EnvService
   ) {
-    this.dateCurrent = this.datepipe.transform(this.date, 'yyyy-MM-dd HH:mm:ss');
+    this.originDateCurrent = this.datepipe.transform(this.date, 'yyyy-MM-dd');
+    this.dateCurrent = this.datepipe.transform(this.date, 'yyyy-MM-dd');
     if (this.date.getDate() >= 10) {
       this.day = this.date.getDate().toString();
     } else {
@@ -55,6 +62,10 @@ export class TheodoiPage implements OnInit {
   ionViewWillEnter(): void {
     this.onShowShortTrending = true;
     this.onShowLongTrending = false;
+    this.isSearch = false;
+    if (ValidationUtil.isEmptyStr(this.valueDateDsChot)) {
+      this.valueDateDsChot = this.ymd;
+    }
     this.reloadTheoDoi();
     this.onReloadTrending(this.ymd);
   }
@@ -121,7 +132,7 @@ export class TheodoiPage implements OnInit {
   loadDataTheoDoi(event) {
     const urlLoadDataTheoDoi = this.envService.API_URL + this.envService.URL_LOAD_DATA_THEO_DOI;
     const params = [];
-    params.push({ key: 'ngaychot', value: this.ymd });
+    params.push({ key: 'ngaychot', value: this.valueDateDsChot });
     params.push({ key: 'limit', value: this.limit });
     params.push({ key: 'skip', value: this.currentTotal });
     this.requestService.get(urlLoadDataTheoDoi, params, undefined,
@@ -165,5 +176,18 @@ export class TheodoiPage implements OnInit {
   ngOnInit() {
   }
 
+  onChangeSearchBar(event) {
+    this.valueSearch = '%' + event.target.value + '%';
+    if (ValidationUtil.isEmptyStr(this.valueSearch)) {
+      this.isSearch = false;
+      return;
+    }
+    this.isSearch = true;
 
+  }
+
+  onChangeDateDsChot(event) {
+    this.valueDateDsChot = this.datepipe.transform(event.target.value, 'yyyy-MM-dd');
+    this.reloadTheoDoi();
+  }
 }

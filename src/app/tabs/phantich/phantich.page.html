@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <ion-label class="do-dai-cua-cau">Độ dài cầu</ion-label>
+      </ion-col>
+      <ion-col size="5">
+        <ion-select class="selectDodai" [(ngModel)]="selectDodai" (ionChange)="onChangeSelectDodai">
+          <ion-select-option value="bangHoacHon">Bằng hoặc hơn</ion-select-option>
+          <ion-select-option value="chinhXacBang">Chính xác bằng</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="2">
+        <ion-input [(ngModel)]="modelNgay" class="inputNgay" value="{{valueNgay}}" type="tel" maxlength="1"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-label class="ngay">ngày</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row-top">
+      <ion-col class="col-right" size="6.5">
+        <ion-label [style.color]="colorTuyChon" (touchstart)="touchstartTuyChon($event)"
+          (touchend)="touchendTuychon($event)" class="tuy-chon" (click)="showTuyChon()">Tùy chọn</ion-label>
+      </ion-col>
+      <ion-col class="col-left">
+        <ion-icon [style.color]="colorTuyChon" (touchstart)="touchstartTuyChon($event)"
+          (touchend)="touchendTuychon($event)" class="icon-dropdown" (click)="showTuyChon()" mode="md"
+          name="{{arrowTuyChon}}"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="onShowTuyChon" class="row-tuychon-one">
+      <ion-col class="col-right" size="1">
+        <ion-icon class="icon-calendar" name="calendar"></ion-icon>
+      </ion-col>
+      <ion-col size="5">
+        <ion-datetime class="ion-datetime" min="2000-01-01" max="2030-01-01" [(ngModel)]="selectDateTime"
+          displayFormat="DD-MM-YYYY">
+        </ion-datetime>
+      </ion-col>
+      <ion-col size="5">
+        <ion-select class="selectDodai" [(ngModel)]="selectNhay" (ionChange)="onChangeSelectNhay($event)">
+          <ion-select-option value="1nhay">1 nháy</ion-select-option>
+          <ion-select-option value="2nhay">2 nháy</ion-select-option>
+          <ion-select-option value="3nhay">3 nháy</ion-select-option>
+          <ion-select-option value="4nhay">4 nháy</ion-select-option>
+          <ion-select-option value="5nhay">5 nháy</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="onShowTuyChon" class="row-tuychon-two">
+      <ion-col class="col-center">
+        <ion-checkbox [(ngModel)]="checkBoxDB" class="checkBox" mode="md"></ion-checkbox>
+        <ion-label class="txt-check-box">Giải ĐB</ion-label>
+      </ion-col>
+      <ion-col class="col-center">
+        <ion-checkbox [(ngModel)]="checkBoxLon" class="checkBox" mode="md"></ion-checkbox>
+        <ion-label class="txt-check-box">Lộn</ion-label>
+      </ion-col>
+      <ion-col class="col-center">
+        <ion-checkbox [(ngModel)]="checkBoxKhongLon" class="checkBox" mode="md"></ion-checkbox>
+        <ion-label class="txt-check-box">Không Lộn</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button class="btnSoiCau" (click)="soiCau()">Soi Cầu</ion-button>
+</ion-header>
+<ion-content>
+  <div class="div-center">
+    <ion-text class="so-ngay-cau-chay">Số ngày cầu chạy</ion-text>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="col-cau-chay" *ngFor="let number of arrayNumber; let i = index" (click)="clickCauChay(i)"
+        [ngStyle]="{'border-bottom-color': i === index ? '#1565c0' : 'grey'}">
+        <ion-text class="number" [ngStyle]="{'color': i === index ? '#1565c0' : 'grey'}">
+          {{number}}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="div-text-kq-soi-cau">
+    <ion-text class="text-kq-soi-cau">Kết quả soi cầu ngày 11-12-2019 tìm được 42 cầu có độ dài >= 5 ngày:</ion-text>
+  </div>
+  <ion-row class="ion-align-items-center ion-justify-content-center" style='margin-top: 30%;'>
+    <ion-spinner name="lines"></ion-spinner>
+  </ion-row>
+</ion-content>

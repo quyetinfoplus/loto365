@@ -26,6 +26,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'phantich',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../../tabs/phantich/phantich.module').then(m => m.PhantichPageModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/navi/ketqua',
         pathMatch: 'full'

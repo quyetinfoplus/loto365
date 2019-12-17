@@ -7,13 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
-  colorKQ = '#b8860b';
-  colorTD = '#FFFFFF';
-  colorPT = '#FFFFFF';
-  colorChat = '#FFFFFF';
+  colorKQ: any;
+  colorTD: any;
+  colorPT: any;
+  colorChat: any;
+  
   constructor(private router: Router) { }
-
-
   ngOnInit() {
   }
 

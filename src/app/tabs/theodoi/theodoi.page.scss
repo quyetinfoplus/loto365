@@ -26,7 +26,7 @@
 }
 
 .card {
-    --background:honeydew ;
+    --background:ghostwhite ;
 }
 
 
@@ -41,15 +41,26 @@
     border: 1px double grey;
 }
 
-.row-content-trending {
+.grid-content-trending {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
     border: 1px double grey;
 }
 
 .date-trending {
     font-size: 14px;
     text-decoration: underline;
+}
+
+.item-header-trending {
+    --background: #eeeeee;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px double grey;
 }
 
 .txt-title-trending {
@@ -71,3 +82,27 @@
     font-weight: 600;
     text-decoration: underline;
 }
+
+.label-danh-sach-chot {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.datetime-dschot {
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.item-date-dschot {
+    margin-top: 5%;
+    --background: #eeeeee;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: 1px double grey;
+}
+
+.icon-create {
+    font-size: 16px;
+}
+
