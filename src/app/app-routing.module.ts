@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('../app/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'lichsu',
+    loadChildren: () => import('./lichsu/lichsu.module').then( m => m.LichsuPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,150 @@
+ion-toolbar {
+  --background: darkslategray;
+}
+
+.back-button {
+  --color: #ffffff;
+}
+
+.div-title {
+  margin-top: 2%;
+  margin-bottom: 1%;
+  text-align: center;
+}
+
+.title-kqxs {
+  color: #000000;
+}
+
+.ngay-trong-tuan {
+  font-size: 14px;
+  line-height: 2.5;
+}
+
+.selec-ngay-trong-tuan {
+  background-color: lightgrey;
+  border-radius: 5px;
+  height: 35px;
+  font-size: 14px;
+}
+
+.so-ngay {
+  font-size: 14px;
+  line-height: 2.5;
+}
+
+.input-so-ngay {
+  border: 1px double grey;
+  border-radius: 5px;
+  max-width: 50px;
+  text-align: center;
+  height: 35px;
+  font-size: 14px;
+}
+
+.dateTimeLichSu {
+  font-size: 14px;
+  border: 1px double grey;
+  border-radius: 5px;
+  height: 35px;
+  margin-top: 7%;
+  width: fit-content;
+}
+
+.row-two {
+  margin-top: 5px;
+}
+
+.bang-dau-duoi {
+  font-size: 13px;
+  line-height: 2;
+  margin-left: 2px;
+}
+
+.den-ngay {
+  font-size: 14px;
+  line-height: 4;
+}
+
+.xem-ketqua {
+    width: 25%;
+    font-size: 13px;
+    height: 30px;
+    margin-left: 37.5%;
+}
+
+.center {
+    text-align: center;
+}
+
+.col-db-center-1 {
+    text-align: center;
+    border-top: 1px inset grey;
+    border-left: 1px inset grey;
+    border-right: 1px inset grey;
+}
+
+.col-db-center-2 {
+    text-align: center;
+    border-top: 1px inset grey;
+    border-right: 1px inset grey;
+}
+
+.col-bottom-center-1 {
+    text-align: center;
+    border-top: 1px inset #1565c0;
+    border-left: 1px inset #1565c0;
+    border-right: 1px inset #1565c0;
+    border-bottom: 1px inset #1565c0;
+}
+
+.col-bottom-center-2 {
+    text-align: center;
+    border-top: 1px inset #1565c0;
+    border-right: 1px inset #1565c0;
+    border-bottom: 1px inset #1565c0;
+}
+
+.txt-dacbiet {
+    color: red;
+    font-size: 14px;
+    font-family: 'Roboto';
+    font-weight: 600;
+}
+
+.row-ngay {
+    border-top: 1px inset #1565c0;
+    border-left: 1px inset #1565c0;
+    border-right: 1px inset #1565c0;
+    background-color: rgb(188, 225, 248);
+}
+
+.txt-giai {
+    color: #000000;
+    font-size: 14px;
+    font-family: 'Roboto';
+    font-weight: 600;
+}
+
+.txt-ngay {
+    color: #1565c0;
+    font-family: 'Roboto';
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.row-giai {
+    background-color: #eaf4fa;
+}
+
+.row-dau {
+    background-color: rgb(236, 236, 209);
+}
+
+.row-duoi {
+    background-color: rgb(240, 173, 231);
+}
+
+.row-loto {
+    background-color: rgb(188, 225, 248);
+}
