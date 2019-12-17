@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -10,7 +11,8 @@ export class TabsPage implements OnInit {
   colorTD = '#FFFFFF';
   colorPT = '#FFFFFF';
   colorChat = '#FFFFFF';
-  constructor() { }
+  constructor(private router: Router) { }
+
 
   ngOnInit() {
   }
@@ -41,6 +43,10 @@ export class TabsPage implements OnInit {
     this.colorTD = '#FFFFFF';
     this.colorPT = '#b8860b';
     this.colorChat = '#FFFFFF';
+  }
+
+  onLichSu() {
+    this.router.navigateByUrl('lichsu');
   }
 
 }

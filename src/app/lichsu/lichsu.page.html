@@ -1,0 +1,378 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons mode="ios" slot="start" class="icon-toolbar">
+      <ion-back-button text="" defaultHref="tabs/navi" class="back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title mode="ios" class="text-toolbar">Lịch Sử</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="div-title">
+    <ion-text class="title-kqxs">Kết quả xổ số Miền Bắc</ion-text>
+  </div>
+  <ion-grid>
+    <ion-row class="row-one">
+      <ion-col>
+        <ion-text class="ngay-trong-tuan">
+          Ngày trong tuần
+        </ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-select class="selec-ngay-trong-tuan" [(ngModel)]="selectedNgayTrongTuan">
+          <ion-select-option value="0">Tất Cả</ion-select-option>
+          <ion-select-option value="2">Thứ 2</ion-select-option>
+          <ion-select-option value="3">Thứ 3</ion-select-option>
+          <ion-select-option value="4">Thứ 4</ion-select-option>
+          <ion-select-option value="5">Thứ 5</ion-select-option>
+          <ion-select-option value="6">Thứ 6</ion-select-option>
+          <ion-select-option value="7">Thứ 7</ion-select-option>
+          <ion-select-option value="8">Chủ Nhật</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row-two">
+      <ion-col size="3">
+        <ion-text class="den-ngay">Đến ngày</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-datetime class="dateTimeLichSu" displayFormat="YYYY-MM-DD" min="{{dateCurrent}}" value="{{dateCurrent}}"
+          (ionChange)="onchangeDateLichSu()"></ion-datetime>
+      </ion-col>
+      <ion-col>
+        <ion-row>
+          <ion-checkbox [(ngModel)]="checkBoxBangDauDuoi"></ion-checkbox>
+          <ion-text class="bang-dau-duoi">Bảng đầu đuôi</ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-checkbox [(ngModel)]="checkBoxHienDB"></ion-checkbox>
+          <ion-text class="bang-dau-duoi">Chỉ hiện giải ĐB</ion-text>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-button (click)="xemKetQua()" class="xem-ketqua">Xem kết quả</ion-button>
+  </ion-grid>
+  <div *ngFor="let lichSu of lichSus">
+    <ion-grid>
+      <ion-row class="row-ngay">
+        <ion-col class="center">
+          <ion-text class="txt-ngay">Thứ 2 {{lichSu.ngaychot}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-giai">
+        <ion-col size="2" class="col-db-center-1">
+          <ion-text class="txt-dacbiet">
+            ĐB
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-text class="txt-dacbiet">
+            {{lichSu.kq0}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-giai" *ngIf="onNotShowDB">
+        <ion-col size="2" class="col-db-center-1">
+          <ion-text class="txt-giai">
+            Nhì
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq1}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq2}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-giai"  *ngIf="onNotShowDB">
+        <ion-col size="2" class="col-db-center-1">
+          <ion-text class="txt-giai">
+            Ba
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-row>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq3}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq4}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq5}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq6}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq7}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq8}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-giai"  *ngIf="onNotShowDB">
+        <ion-col size="2" class="col-db-center-1">
+          <ion-text class="txt-giai">
+            Tư
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq9}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq10}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq11}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq12}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-giai"  *ngIf="onNotShowDB">
+        <ion-col size="2" class="col-db-center-1">
+          <ion-text class="txt-giai">
+            Năm
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-row>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq13}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq14}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq15}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq16}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq17}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="txt-giai">
+                {{lichSu.kq18}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-giai"  *ngIf="onNotShowDB">
+        <ion-col size="2" class="col-db-center-1">
+          <ion-text class="txt-giai">
+            Sáu
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq20}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq21}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-db-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq22}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-giai"  *ngIf="onNotShowDB">
+        <ion-col size="2" class="col-bottom-center-1">
+          <ion-text class="txt-giai">
+            Bảy
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-bottom-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq23}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-bottom-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq24}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-bottom-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq25}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-bottom-center-2">
+          <ion-text class="txt-giai">
+            {{lichSu.kq26}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="onShowBangDauDuoi">
+      <ion-row>
+        <ion-col size="5" class="col-db-center-1 row-dau">
+          <ion-text class="txt-giai">Đầu</ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-db-center-2 row-loto">
+          <ion-text class="txt-giai">Loto</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-db-center-2 row-duoi">
+          <ion-text class="txt-giai">Đuôi</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-db-center-1 row-dau">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-db-center-2 row-loto">
+          <ion-text class="txt-giai">0</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-db-center-2 row-duoi">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-db-center-1 row-dau">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-db-center-2 row-loto">
+          <ion-text class="txt-giai">1</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-db-center-2 row-duoi">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-db-center-1 row-dau">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-db-center-2 row-loto">
+          <ion-text class="txt-giai">2</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-db-center-2 row-duoi">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-db-center-1 row-dau">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-db-center-2 row-loto">
+          <ion-text class="txt-giai">3</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-db-center-2 row-duoi">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-db-center-1 row-dau">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-db-center-2 row-loto">
+          <ion-text class="txt-giai">4</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-db-center-2 row-duoi">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-db-center-1 row-dau">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-db-center-2 row-loto">
+          <ion-text class="txt-giai">5</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-db-center-2 row-duoi">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-db-center-1 row-dau">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-db-center-2 row-loto">
+          <ion-text class="txt-giai">6</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-db-center-2 row-duoi">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-db-center-1 row-dau">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-db-center-2 row-loto">
+          <ion-text class="txt-giai">7</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-db-center-2 row-duoi">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-db-center-1 row-dau">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-db-center-2 row-loto">
+          <ion-text class="txt-giai">8</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-db-center-2 row-duoi">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="5" class="col-bottom-center-1 row-dau">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+        <ion-col size="2" class="col-bottom-center-2 row-loto">
+          <ion-text class="txt-giai">9</ion-text>
+        </ion-col>
+        <ion-col size="5" class="col-bottom-center-2 row-duoi">
+          <ion-text class="txt-giai"></ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
