@@ -14,9 +14,9 @@ export class LichsuPage implements OnInit {
   currenTotal: any;
   limit = 10;
   noData: boolean;
-  selectedNgayTrongTuan: any;
   isFirstTimeLoading: boolean;
   errorinfo: boolean;
+  error: boolean;
   lichSus = [];
   date = new Date();
   dateCurrent: any;
@@ -24,6 +24,7 @@ export class LichsuPage implements OnInit {
   checkBoxHienDB: boolean;
   onShowBangDauDuoi: boolean;
   onNotShowDB: boolean;
+  isError: boolean;
   constructor(
     private datepipe: DatePipe,
     private requestService: RequestService,
@@ -31,7 +32,6 @@ export class LichsuPage implements OnInit {
     private envService: EnvService
   ) {
     this.dateCurrent = this.datepipe.transform(this.date, 'yyyy-MM-dd');
-    this.selectedNgayTrongTuan = '0';
     this.onShowBangDauDuoi = true;
     this.checkBoxBangDauDuoi = true;
     this.onNotShowDB = true;
@@ -41,7 +41,7 @@ export class LichsuPage implements OnInit {
   onReloadData() {
     this.currentTotal = 0;
     this.loadData(null);
-    this.currenTotal = this.currenTotal += this.limit;
+    this.currenTotal += this.limit;
   }
   loadData(event) {
     const urlLoadLichSu = this.envService.API_URL + this.envService.URL_LOAD_DATA_KET_QUA;
@@ -56,7 +56,6 @@ export class LichsuPage implements OnInit {
 
   onError(error, event) {
     if (error.status === 403) {
-      this.noData = true;
       this.isFirstTimeLoading = false;
       this.errorinfo = false;
       if (event != null) {
@@ -72,6 +71,7 @@ export class LichsuPage implements OnInit {
   }
 
   onSuccess(response, event) {
+    this.isError = false;
     this.isFirstTimeLoading = false;
     this.errorinfo = false;
     if (Object.keys(response).length <= 0) {
@@ -97,11 +97,11 @@ export class LichsuPage implements OnInit {
       this.onShowBangDauDuoi = false;
     }
     if (this.checkBoxHienDB === true) {
-      this.onShowBangDauDuoi = false;
       this.onNotShowDB = false;
     } else {
-      this.onShowBangDauDuoi = true;
       this.onNotShowDB = true;
     }
+    this.isError = true;
+    this.isFirstTimeLoading = true;
   }
 }
