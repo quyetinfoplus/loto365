@@ -11,13 +11,18 @@ export class TabsPage implements OnInit {
   colorTD: any;
   colorPT: any;
   colorChat: any;
-  
-  constructor(private router: Router) { }
+
+  constructor(private router: Router) {
+    this.colorKQ = 'burlywood';
+    this.colorTD = '#FFFFFF';
+    this.colorPT = '#FFFFFF';
+    this.colorChat = '#FFFFFF';
+  }
   ngOnInit() {
   }
 
   clickKQ() {
-    this.colorKQ = '#b8860b';
+    this.colorKQ = 'burlywood';
     this.colorTD = '#FFFFFF';
     this.colorPT = '#FFFFFF';
     this.colorChat = '#FFFFFF';
@@ -25,7 +30,7 @@ export class TabsPage implements OnInit {
 
   clickTD() {
     this.colorKQ = '#FFFFFF';
-    this.colorTD = '#b8860b';
+    this.colorTD = 'burlywood';
     this.colorPT = '#FFFFFF';
     this.colorChat = '#FFFFFF';
   }

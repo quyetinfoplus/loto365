@@ -12,45 +12,17 @@
     <ion-text class="title-kqxs">Kết quả xổ số Miền Bắc</ion-text>
   </div>
   <ion-grid>
-    <ion-row class="row-one">
-      <ion-col>
-        <ion-text class="ngay-trong-tuan">
-          Ngày trong tuần
-        </ion-text>
-      </ion-col>
-      <ion-col>
-        <ion-select class="selec-ngay-trong-tuan" [(ngModel)]="selectedNgayTrongTuan">
-          <ion-select-option value="0">Tất Cả</ion-select-option>
-          <ion-select-option value="2">Thứ 2</ion-select-option>
-          <ion-select-option value="3">Thứ 3</ion-select-option>
-          <ion-select-option value="4">Thứ 4</ion-select-option>
-          <ion-select-option value="5">Thứ 5</ion-select-option>
-          <ion-select-option value="6">Thứ 6</ion-select-option>
-          <ion-select-option value="7">Thứ 7</ion-select-option>
-          <ion-select-option value="8">Chủ Nhật</ion-select-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
     <ion-row class="row-two">
-      <ion-col size="3">
-        <ion-text class="den-ngay">Đến ngày</ion-text>
+      <ion-col class="center">
+        <ion-checkbox mode='md' [(ngModel)]="checkBoxBangDauDuoi"></ion-checkbox>
+        <ion-text class="bang-dau-duoi">Bảng đầu đuôi</ion-text>
       </ion-col>
-      <ion-col>
-        <ion-datetime class="dateTimeLichSu" displayFormat="YYYY-MM-DD" min="{{dateCurrent}}" value="{{dateCurrent}}"
-          (ionChange)="onchangeDateLichSu()"></ion-datetime>
-      </ion-col>
-      <ion-col>
-        <ion-row>
-          <ion-checkbox [(ngModel)]="checkBoxBangDauDuoi"></ion-checkbox>
-          <ion-text class="bang-dau-duoi">Bảng đầu đuôi</ion-text>
-        </ion-row>
-        <ion-row>
-          <ion-checkbox [(ngModel)]="checkBoxHienDB"></ion-checkbox>
-          <ion-text class="bang-dau-duoi">Chỉ hiện giải ĐB</ion-text>
-        </ion-row>
+      <ion-col class="center">
+        <ion-checkbox mode='md' [(ngModel)]="checkBoxHienDB"></ion-checkbox>
+        <ion-text class="bang-dau-duoi">Chỉ hiện giải ĐB</ion-text>
       </ion-col>
     </ion-row>
-    <ion-button (click)="xemKetQua()" class="xem-ketqua">Xem kết quả</ion-button>
+    <ion-button mode='ios' (click)="xemKetQua()" class="xem-ketqua">Xem kết quả</ion-button>
   </ion-grid>
   <div *ngFor="let lichSu of lichSus">
     <ion-grid>
@@ -88,7 +60,7 @@
           </ion-text>
         </ion-col>
       </ion-row>
-      <ion-row class="row-giai"  *ngIf="onNotShowDB">
+      <ion-row class="row-giai" *ngIf="onNotShowDB">
         <ion-col size="2" class="col-db-center-1">
           <ion-text class="txt-giai">
             Ba
@@ -131,7 +103,7 @@
           </ion-row>
         </ion-col>
       </ion-row>
-      <ion-row class="row-giai"  *ngIf="onNotShowDB">
+      <ion-row class="row-giai" *ngIf="onNotShowDB">
         <ion-col size="2" class="col-db-center-1">
           <ion-text class="txt-giai">
             Tư
@@ -158,7 +130,7 @@
           </ion-text>
         </ion-col>
       </ion-row>
-      <ion-row class="row-giai"  *ngIf="onNotShowDB">
+      <ion-row class="row-giai" *ngIf="onNotShowDB">
         <ion-col size="2" class="col-db-center-1">
           <ion-text class="txt-giai">
             Năm
@@ -201,7 +173,7 @@
           </ion-row>
         </ion-col>
       </ion-row>
-      <ion-row class="row-giai"  *ngIf="onNotShowDB">
+      <ion-row class="row-giai" *ngIf="onNotShowDB">
         <ion-col size="2" class="col-db-center-1">
           <ion-text class="txt-giai">
             Sáu
@@ -223,7 +195,7 @@
           </ion-text>
         </ion-col>
       </ion-row>
-      <ion-row class="row-giai"  *ngIf="onNotShowDB">
+      <ion-row class="row-giai" *ngIf="onNotShowDB">
         <ion-col size="2" class="col-bottom-center-1">
           <ion-text class="txt-giai">
             Bảy
@@ -375,4 +347,18 @@
       </ion-row>
     </ion-grid>
   </div>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="lichSus.length > 0">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Load more...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-row class="ion-align-items-center ion-justify-content-center" style='margin-top: 30%;' *ngIf="isError">
+    <ion-spinner class="spinner" name="lines" *ngIf="isFirstTimeLoading"></ion-spinner>
+    <div class="try-again-button" *ngIf="errorinfo">
+      <ion-text>Error happens.Try again !</ion-text>
+      <br>
+      <ion-button shape="round" color="light" (click)="retry()">
+        Try again
+      </ion-button>
+    </div>
+  </ion-row>
 </ion-content>
