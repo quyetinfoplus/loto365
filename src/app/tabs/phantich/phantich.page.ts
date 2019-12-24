@@ -44,6 +44,7 @@ export class PhantichPage implements OnInit {
   }
 
   ionViewWillEnter(): void {
+    this.onShowLoading = true;
     if (this.date.getDate() >= 10) {
       this.day = (this.date.getDate() - 1).toString();
     } else {
@@ -73,7 +74,7 @@ export class PhantichPage implements OnInit {
     if (this.checkBoxLon === true) {
       this.lon = 1;
     }
-    this.onLoadDataPhanTich(this.ngaychotCurrent, this.modelDoDaiCau, this.valueNhay, this.lon);
+    this.onReloadDataPhanTich(this.ngaychotCurrent, this.modelDoDaiCau, this.valueNhay, this.lon);
   }
 
   onLoadDataPhanTich(ngaychot, soNgayCau, nhay, lon) {
