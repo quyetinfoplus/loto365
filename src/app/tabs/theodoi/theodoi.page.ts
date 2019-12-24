@@ -34,9 +34,11 @@ export class TheodoiPage implements OnInit {
   onLoadingTrending: boolean;
   valueSearch: any;
   isSearch: boolean;
+  searText: any;
   originDateCurrent: string;
   valueDateDsChot: any;
   ngaychot: any;
+  dateTrending: any;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
@@ -55,25 +57,28 @@ export class TheodoiPage implements OnInit {
     } else {
       this.month = '0' + (this.date.getMonth() + 1).toString();
     }
+    this.dateTrending = this.dateCurrent;
     this.year = this.date.getFullYear();
     this.ymd = this.year.toString() + '-' + this.month.toString() + '-' + this.day.toString();
   }
 
   ionViewWillEnter(): void {
+    this.searText = '';
+    this.valueSearch = '';
     this.onShowShortTrending = true;
     this.onShowLongTrending = false;
     this.isSearch = false;
     if (ValidationUtil.isEmptyStr(this.valueDateDsChot)) {
       this.valueDateDsChot = this.ymd;
     }
-    this.reloadTheoDoi();
+    this.reloadTheoDoi(this.valueSearch);
     this.onReloadTrending(this.ymd);
   }
 
-  reloadTheoDoi() {
+  reloadTheoDoi(valueSearch) {
     this.currentTotal = 0;
     this.theodoiArrays = [];
-    this.loadDataTheoDoi(null);
+    this.loadDataTheoDoi(null, valueSearch);
     this.currentTotal += this.limit;
   }
 
@@ -125,16 +130,17 @@ export class TheodoiPage implements OnInit {
   doRefresh(event) {
     setTimeout(() => {
       event.target.complete();
-      this.reloadTheoDoi();
+      this.reloadTheoDoi(this.valueSearch);
     }, 500);
   }
 
-  loadDataTheoDoi(event) {
+  loadDataTheoDoi(event, valueSearch) {
     const urlLoadDataTheoDoi = this.envService.API_URL + this.envService.URL_LOAD_DATA_THEO_DOI;
     const params = [];
     params.push({ key: 'ngaychot', value: this.valueDateDsChot });
     params.push({ key: 'limit', value: this.limit });
     params.push({ key: 'skip', value: this.currentTotal });
+    params.push({ key: 'name', value: valueSearch });
     this.requestService.get(urlLoadDataTheoDoi, params, undefined,
       (response) => this.onSuccessLoadDataTheoDoi(response, event),
       (error) => this.onError(error, event),
@@ -177,17 +183,12 @@ export class TheodoiPage implements OnInit {
   }
 
   onChangeSearchBar(event) {
-    this.valueSearch = '%' + event.target.value + '%';
-    if (ValidationUtil.isEmptyStr(this.valueSearch)) {
-      this.isSearch = false;
-      return;
-    }
-    this.isSearch = true;
-
+    this.valueSearch = event.target.value;
+    this.reloadTheoDoi(this.valueSearch);
   }
 
   onChangeDateDsChot(event) {
     this.valueDateDsChot = this.datepipe.transform(event.target.value, 'yyyy-MM-dd');
-    this.reloadTheoDoi();
+    this.reloadTheoDoi(this.valueSearch);
   }
 }

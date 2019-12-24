@@ -206,78 +206,26 @@ export class KetquaPage implements OnInit {
     this.kqBay2 = response[0].kq24;
     this.kqBay3 = response[0].kq25;
     this.kqBay4 = response[0].kq26;
-    this.arrayKqOrigin = response[0].kqAr.replace(/[^a-zA-Z0-9]/g, '');
-    // tslint:disable-next-line: prefer-for-of
-    for (let index = 0; index < this.arrayKqOrigin.length / 2; index++) {
-      this.arrayKq.push(this.arrayKqOrigin.substr(index * 2, 2));
-    }
-
-    for (let index = 0; index < Object.keys(this.arrayKq).length; index++) {
-      switch (this.arrayKq[index].substr(0, 1)) {
-        case '0':
-          this.arrayDau0.push(this.arrayKq[index]);
-          break;
-        case '1':
-          this.arrayDau1.push(this.arrayKq[index]);
-          break;
-        case '2':
-          this.arrayDau2.push(this.arrayKq[index]);
-          break;
-        case '3':
-          this.arrayDau3.push(this.arrayKq[index]);
-          break;
-        case '4':
-          this.arrayDau4.push(this.arrayKq[index]);
-          break;
-        case '5':
-          this.arrayDau5.push(this.arrayKq[index]);
-          break;
-        case '6':
-          this.arrayDau6.push(this.arrayKq[index]);
-          break;
-        case '7':
-          this.arrayDau7.push(this.arrayKq[index]);
-          break;
-        case '8':
-          this.arrayDau8.push(this.arrayKq[index]);
-          break;
-        case '9':
-          this.arrayDau9.push(this.arrayKq[index]);
-          break;
-      }
-      switch (this.arrayKq[index].substr(1, 1)) {
-        case '0':
-          this.arrayDit0.push(this.arrayKq[index]);
-          break;
-        case '1':
-          this.arrayDit1.push(this.arrayKq[index]);
-          break;
-        case '2':
-          this.arrayDit2.push(this.arrayKq[index]);
-          break;
-        case '3':
-          this.arrayDit3.push(this.arrayKq[index]);
-          break;
-        case '4':
-          this.arrayDit4.push(this.arrayKq[index]);
-          break;
-        case '5':
-          this.arrayDit5.push(this.arrayKq[index]);
-          break;
-        case '6':
-          this.arrayDit6.push(this.arrayKq[index]);
-          break;
-        case '7':
-          this.arrayDit7.push(this.arrayKq[index]);
-          break;
-        case '8':
-          this.arrayDit8.push(this.arrayKq[index]);
-          break;
-        case '9':
-          this.arrayDit9.push(this.arrayKq[index]);
-          break;
-      }
-    }
+    this.arrayDau0 = response[0].dau0;
+    this.arrayDau1 = response[0].dau1;
+    this.arrayDau2 = response[0].dau2;
+    this.arrayDau3 = response[0].dau3;
+    this.arrayDau4 = response[0].dau4;
+    this.arrayDau5 = response[0].dau5;
+    this.arrayDau6 = response[0].dau6;
+    this.arrayDau7 = response[0].dau7;
+    this.arrayDau8 = response[0].dau8;
+    this.arrayDau9 = response[0].dau9;
+    this.arrayDit0 = response[0].dit0;
+    this.arrayDit1 = response[0].dit1;
+    this.arrayDit2 = response[0].dit2;
+    this.arrayDit3 = response[0].dit3;
+    this.arrayDit4 = response[0].dit4;
+    this.arrayDit5 = response[0].dit5;
+    this.arrayDit6 = response[0].dit6;
+    this.arrayDit7 = response[0].dit7;
+    this.arrayDit8 = response[0].dit8;
+    this.arrayDit9 = response[0].dit9;
   }
 
   onSegmentChanged(event) {

@@ -12,7 +12,7 @@ import { EnvService } from '../service/env.service';
 export class LichsuPage implements OnInit {
   currentTotal: number;
   currenTotal: any;
-  limit = 10;
+  limit = 3;
   noData: boolean;
   isFirstTimeLoading: boolean;
   errorinfo: boolean;
@@ -85,6 +85,7 @@ export class LichsuPage implements OnInit {
       this.currentTotal += this.limit;
       event.target.complete();
     }
+
   }
 
   ngOnInit() {

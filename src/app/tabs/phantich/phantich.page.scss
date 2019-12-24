@@ -69,7 +69,7 @@ ion-header {
 
 .ion-datetime {
   font-size: 13px;
-  text-align: left;
+  text-align: center;
   background-color: lightblue;
   border-radius: 5px;
 }
@@ -114,6 +114,12 @@ ion-header {
   margin: 2px;
 }
 
+.col-cau {
+  border: 1px double #3c454e;
+  margin: 2%;
+  background-color: #62a2f1;
+}
+
 .text-kq-soi-cau {
   font-size: 14px;
 }
@@ -124,4 +130,8 @@ ion-header {
 
 .number {
   font-weight: 700;
+}
+
+.center {
+  text-align: center;
 }
