@@ -25,8 +25,12 @@
   max-width: 150px;
   font-size: 14px;
   font-weight: 600;
-  line-height: 2.5;
+  line-height: 4;
   color: black;
+}
+
+.row-first{
+  height: 50px;
 }
 
 .selectDodai {
@@ -39,7 +43,7 @@
 
 .ngay {
   font-size: 14px;
-  line-height: 2;
+  line-height: 4;
   font-weight: 600;
 }
 
@@ -56,6 +60,11 @@
 
 .col-center {
   text-align: center;
+}
+
+.ion-range {
+  height: 70%;
+  --bar-background-active: #1565c0;
 }
 
 .col-right {
@@ -137,4 +146,10 @@ ion-header {
 
 .center {
   text-align: center;
+}
+
+.txt-do-dai-cau {
+  color: #1565c0;
+  font-weight: 600;
+  margin-right: 5px;
 }
