@@ -23,7 +23,7 @@ export class PhantichPage implements OnInit {
   colorTuyChon = '#000000';
   index: any;
   doDaiCau: any;
-  arrayNumber = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  arrayNumber = [];
   modelDoDaiCau: any;
   valueNhay: any;
   checkBoxDB: any;
@@ -37,6 +37,7 @@ export class PhantichPage implements OnInit {
   onShowLoading: boolean;
   currentDay: string;
   soCau: number;
+  doDaiCauMax: any;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
@@ -47,6 +48,7 @@ export class PhantichPage implements OnInit {
 
   ionViewWillEnter(): void {
     this.onShowLoading = true;
+    this.arrayNumber = [];
     if (this.date.getDate() >= 10) {
       this.day = (this.date.getDate() - 1).toString();
     } else {
@@ -77,7 +79,29 @@ export class PhantichPage implements OnInit {
     if (this.checkBoxLon === true) {
       this.lon = 1;
     }
+    this.getDoDaiCauMax(this.ngaychotCurrent);
     this.onReloadDataPhanTich(this.ngaychotCurrent, this.modelDoDaiCau, this.valueNhay, this.lon);
+  }
+
+  getDoDaiCauMax(ngaychot) {
+    const urlGetDoDaiCauMax = this.envService.API_URL + this.envService.URL_GET_MAX_DO_DAI_CAU;
+    const params = [];
+    params.push({ key: 'ngaychot', value: ngaychot });
+    this.requestService.getWithAuth(urlGetDoDaiCauMax, params, undefined,
+      (response) => this.onSuccessDoDaiCauMax(response),
+      (error) => this.onErrorDoDaiCauMax(error),
+      () => { });
+  }
+
+  onErrorDoDaiCauMax(error) {
+    console.log(error);
+  }
+
+  onSuccessDoDaiCauMax(response) {
+    this.doDaiCauMax = response;
+    for (let index = 1; index <= this.doDaiCauMax; index++) {
+      this.arrayNumber.push(index);
+    }
   }
 
   onLoadDataPhanTich(ngaychot, soNgayCau, nhay, lon) {
@@ -144,8 +168,8 @@ export class PhantichPage implements OnInit {
   }
 
   clickCauChay(i) {
-    this.index = i;
-    this.doDaiCau = i;
+    this.index = i + 1;
+    this.doDaiCau = i + 1;
     this.onShowLoading = true;
     this.onReloadDataPhanTich(this.valueDateSelect, this.doDaiCau, this.valueNhay, this.lon);
   }
@@ -154,6 +178,8 @@ export class PhantichPage implements OnInit {
     this.index = parseInt(this.modelDoDaiCau, 0);
     this.onShowLoading = true;
     this.currentDay = this.datepipe.transform(this.valueDateSelect, 'dd-MM-yyyy');
+    this.arrayNumber = [];
+    this.getDoDaiCauMax(this.valueDateSelect);
     this.onReloadDataPhanTich(this.valueDateSelect, this.doDaiCau, this.valueNhay, this.lon);
   }
 
