@@ -7,7 +7,7 @@
   <ion-searchbar class="search-bar" (ionChange)="onChangeSearchBar($event)" [(ngModel)]="searText"></ion-searchbar>
   <ion-item lines="none" class="item-header-trending">
     <ion-label class="label-danh-sach-chot">Loto được chơi nhiều trong ngày</ion-label>
-    <ion-datetime class="date-trending" max="{{originDateCurrent}}" displayFormat="YYYY-MM-DD" [(ngModel)]="dateTrending"
+    <ion-datetime class="date-trending" max="{{originDateCurrent}}" displayFormat="DD-MM-YYYY" [(ngModel)]="dateTrending"
       (ionChange)="onChangeDateTimeTrending($event)">
     </ion-datetime>
     <ion-icon class="icon-create" name="calendar"></ion-icon>
@@ -33,7 +33,7 @@
   </ion-grid>
   <ion-item lines="none" class="item-date-dschot">
     <ion-label class="label-danh-sach-chot">Danh Sách chốt ngày</ion-label>
-    <ion-datetime class="datetime-dschot" displayFormat="YYYY-MM-DD" max="{{dateCurrent}}" value="{{dateCurrent}}"
+    <ion-datetime class="datetime-dschot" displayFormat="DD-MM-YYYY" max="{{dateCurrent}}" value="{{dateCurrent}}"
       (ionChange)="onChangeDateDsChot($event)">
     </ion-datetime>
     <ion-icon class="icon-create" name="calendar"></ion-icon>

@@ -35,6 +35,8 @@ export class PhantichPage implements OnInit {
   arrayCauDep = [];
   valueDateSelect: any;
   onShowLoading: boolean;
+  currentDay: string;
+  soCau: number;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
@@ -58,6 +60,7 @@ export class PhantichPage implements OnInit {
     this.checkBoxLon = true;
     this.year = this.date.getFullYear();
     this.ngaychotCurrent = this.year.toString() + '-' + this.month.toString() + '-' + this.day.toString();
+    this.currentDay = this.day + '-' + this.month + '-' + this.year;
     this.moDelDateTime = this.year + '-' + this.month + '-' + this.day;
     this.modelDoDaiCau = 5;
     this.index = 5;
@@ -109,6 +112,7 @@ export class PhantichPage implements OnInit {
       for (let index = 0; index < this.arrayCauDepOrigin.length / 2; index++) {
         this.arrayCauDep.push(this.arrayCauDepOrigin.substr(index * 2, 2));
       }
+      this.soCau = Object.keys(this.arrayCauDep).length;
     }
   }
 
@@ -149,6 +153,7 @@ export class PhantichPage implements OnInit {
   soiCau() {
     this.index = parseInt(this.modelDoDaiCau, 0);
     this.onShowLoading = true;
+    this.currentDay = this.datepipe.transform(this.valueDateSelect, 'dd-MM-yyyy');
     this.onReloadDataPhanTich(this.valueDateSelect, this.doDaiCau, this.valueNhay, this.lon);
   }
 
