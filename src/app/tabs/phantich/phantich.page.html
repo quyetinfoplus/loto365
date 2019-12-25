@@ -66,8 +66,8 @@
   <ion-grid>
     <ion-row>
       <ion-col class="col-cau-chay" *ngFor="let number of arrayNumber; let i = index" (click)="clickCauChay(i)"
-        [ngStyle]="{'border-bottom-color': i === index ? '#1565c0' : 'grey'}">
-        <ion-text class="number" [ngStyle]="{'color': i === index ? '#1565c0' : 'grey'}">
+        [ngStyle]="{'border-bottom-color': index - 1  === i ? '#1565c0' : 'grey'}">
+        <ion-text class="number" [ngStyle]="{'color': i === index - 1 ? '#1565c0' : 'grey'}">
           {{number}}</ion-text>
       </ion-col>
     </ion-row>

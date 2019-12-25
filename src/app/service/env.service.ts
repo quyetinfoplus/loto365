@@ -9,5 +9,6 @@ export class EnvService {
   URL_LOAD_DATA_KET_QUA = 'kqxs/ketqua';
   URL_LOAD_DATA_TRENDING = 'kqxs/trending';
   URL_LOAD_DATA_PHAN_TICH = 'kqxs/caudep';
+  URL_GET_MAX_DO_DAI_CAU = 'kqxs/limitday';
   constructor() { }
 }
