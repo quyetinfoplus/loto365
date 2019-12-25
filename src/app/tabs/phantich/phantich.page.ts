@@ -166,6 +166,7 @@ export class PhantichPage implements OnInit {
   clickCauChay(i) {
     this.index = i + 1;
     this.doDaiCau = i + 1;
+    this.rangDoDaiCau = i + 1;
     this.onShowLoading = true;
     this.onReloadDataPhanTich(this.valueDateSelect, this.doDaiCau, this.valueNhay, this.lon);
   }
