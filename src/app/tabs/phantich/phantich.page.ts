@@ -38,6 +38,7 @@ export class PhantichPage implements OnInit {
   currentDay: string;
   soCau: number;
   doDaiCauMax: any;
+  rangDoDaiCau: number;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
@@ -73,6 +74,7 @@ export class PhantichPage implements OnInit {
     this.valueDateSelect = this.ngaychotCurrent;
     this.doDaiCau = 5;
     this.valueNhay = 1;
+    this.rangDoDaiCau = 5;
     if (this.checkBoxKhongLon === true) {
       this.lon = 0;
     }
@@ -150,12 +152,6 @@ export class PhantichPage implements OnInit {
     }
   }
 
-  onChangeInputNgay(event) {
-    this.doDaiCau = event.target.value;
-  }
-
-
-
   touchstartTuyChon() {
     this.colorTuyChon = 'darkseagreen';
   }
@@ -175,7 +171,7 @@ export class PhantichPage implements OnInit {
   }
 
   soiCau() {
-    this.index = parseInt(this.modelDoDaiCau, 0);
+    this.index = this.rangDoDaiCau;
     this.onShowLoading = true;
     this.currentDay = this.datepipe.transform(this.valueDateSelect, 'dd-MM-yyyy');
     this.arrayNumber = [];
@@ -189,6 +185,10 @@ export class PhantichPage implements OnInit {
 
   onChangeDateTimeSelect(event) {
     this.valueDateSelect = this.datepipe.transform(event.target.value, 'yyyy-MM-dd');
+  }
+
+  onChangeRang(event) {
+    this.doDaiCau = event.target.value;
   }
 
 }
