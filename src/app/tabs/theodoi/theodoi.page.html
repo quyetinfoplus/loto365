@@ -7,8 +7,8 @@
   <ion-searchbar class="search-bar" (ionChange)="onChangeSearchBar($event)" [(ngModel)]="searText"></ion-searchbar>
   <ion-item lines="none" class="item-header-trending">
     <ion-label class="label-danh-sach-chot">Loto được chơi nhiều trong ngày</ion-label>
-    <ion-datetime class="date-trending" max="{{originDateCurrent}}" displayFormat="DD-MM-YYYY" [(ngModel)]="dateTrending"
-      (ionChange)="onChangeDateTimeTrending($event)">
+    <ion-datetime class="date-trending" max="{{originDateCurrent}}" displayFormat="DD-MM-YYYY"
+      [(ngModel)]="dateTrending" (ionChange)="onChangeDateTimeTrending($event)">
     </ion-datetime>
     <ion-icon class="icon-create" name="calendar"></ion-icon>
   </ion-item>
@@ -19,13 +19,15 @@
           <ion-spinner></ion-spinner>
         </div>
         <div *ngIf="onShowShortTrending">
-          <ion-text class="text-trending" *ngFor="let TrendingShort of arrayTrendingShort;let i = index;" [ngStyle]="{'font-size': (25 - i/2) + 'px'}">
+          <ion-text class="text-trending" *ngFor="let TrendingShort of arrayTrendingShort;let i = index;"
+            [ngStyle]="{'font-size': (25 - i/2) + 'px'}">
             {{TrendingShort}}
           </ion-text>
           <ion-text class="xem-them" (click)="onshowMore()">Xem tất cả</ion-text>
         </div>
         <div *ngIf="onShowLongTrending">
-          <ion-text class="text-trending" *ngFor="let Trending of arrayTrending;let i = index;" [ngStyle]="{'font-size': (25 - i/10) + 'px'}">{{Trending}} </ion-text>
+          <ion-text class="text-trending" *ngFor="let Trending of arrayTrending;let i = index;"
+            [ngStyle]="{'font-size': (25 - i/10) + 'px'}">{{Trending}} </ion-text>
           <ion-text class="xem-them" (click)="onNoShow()">Thu gọn</ion-text>
         </div>
       </ion-col>
@@ -41,13 +43,16 @@
   <ion-card *ngFor="let theodoiArray of theodoiArrays;  let i = index" class="card">
     <ion-grid>
       <ion-row>
-        <ion-col size="12">
+        <ion-col size="11">
           <ion-label class="label-name-theo-doi">{{theodoiArray.name}}</ion-label>
+        </ion-col>
+        <ion-col size="1">
+          <ion-label>{{i}}</ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-label class="label-thoigian">{{theodoiArray.thoigianchot}}</ion-label>
+          <ion-label class="label-thoigian">{{theodoiArray.time}}</ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -107,7 +112,8 @@
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Load more...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  <ion-row class="ion-align-items-center ion-justify-content-center" style='height: 100%' *ngIf="theodoiArrays.length <= 0">
+  <ion-row class="ion-align-items-center ion-justify-content-center" style='height: 100%'
+    *ngIf="theodoiArrays.length <= 0">
     <ion-spinner class="spinner" name="lines" *ngIf="isFirstTimeLoading"></ion-spinner>
     <div class="no-data" *ngIf="noData">
       <ion-text>No data</ion-text>
