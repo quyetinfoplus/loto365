@@ -140,6 +140,9 @@ export class TheodoiPage implements OnInit {
     params.push({ key: 'ngaychot', value: this.valueDateDsChot });
     params.push({ key: 'limit', value: this.limit });
     params.push({ key: 'skip', value: this.currentTotal });
+    if (ValidationUtil.isEmptyStr(valueSearch)) {
+      valueSearch = '';
+    }
     params.push({ key: 'name', value: valueSearch });
     this.requestService.get(urlLoadDataTheoDoi, params, undefined,
       (response) => this.onSuccessLoadDataTheoDoi(response, event),
