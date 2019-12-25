@@ -12,3 +12,7 @@ ion-toolbar {
     margin-right: 5px;
 }
 
+ion-content {
+    --overflow: hidden;
+}
+
