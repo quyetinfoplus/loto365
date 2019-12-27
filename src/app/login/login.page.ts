@@ -13,6 +13,10 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 export class LoginPage implements OnInit {
   imgUser: any;
   info: any;
+  nameUser: any;
+  emailUser: any;
+  idUser: any;
+  accessToken: any;
   constructor(
     private fb: Facebook,
     private requestService: RequestService,
@@ -28,9 +32,8 @@ export class LoginPage implements OnInit {
     this.fb.login(['public_profile', 'user_friends', 'email'])
       .then((res: FacebookLoginResponse) => {
         if (res.status === 'connected') {
-          this.imgUser = 'https://graph.facebook.com/' + res.authResponse.userID + '/picture?type=square';
           this.getData(res.authResponse.accessToken);
-          this.localStorageSerivce.set(this.localStorageSerivce.ACCESS_TOKEN, res.authResponse.accessToken);
+          this.accessToken = res.authResponse.accessToken;
           this.alertService.presentToast('Đăng nhập thành công');
           this.navCrt.navigateRoot('/tabs/navi');
         } else {
@@ -39,19 +42,28 @@ export class LoginPage implements OnInit {
         console.log('Logged into Facebook!', res);
       })
       .catch(e => {
-        this.navCrt.navigateRoot('/tabs/navi');
+        this.alertService.presentToast('Đăng nhập thất bại');
         console.log('Error logging into Facebook', e);
       });
   }
 
-
   loginGoogle() {
     this.googlePlus.login({})
       .then(res => {
+        this.accessToken = res.accessToken;
+        this.nameUser = res.displayName,
+          this.emailUser = res.email;
+        this.idUser = res.userId;
+        this.localStorageSerivce.set(this.localStorageSerivce.ACCESS_TOKEN, this.accessToken);
+        this.localStorageSerivce.set(this.localStorageSerivce.USER_EMAIL, this.emailUser);
+        this.localStorageSerivce.set(this.localStorageSerivce.USER_ID, this.idUser);
+        this.localStorageSerivce.set(this.localStorageSerivce.USER_NAME, this.nameUser);
+        this.navCrt.navigateRoot('/tabs/navi');
+        this.alertService.presentToast('Đăng nhập thành công');
         console.log(res);
       })
       .catch(err => {
-        this.navCrt.navigateRoot('/tabs/navi');
+        this.alertService.presentToast('Đăng nhập thất bại');
         console.error(err);
       });
   }
@@ -69,9 +81,13 @@ export class LoginPage implements OnInit {
   }
 
   onSuccess(data) {
-    this.info = data;
-    this.localStorageSerivce.set(this.localStorageSerivce.DATA, data);
-
+    this.emailUser = data.email;
+    this.idUser = data.id;
+    this.nameUser = data.name;
+    this.localStorageSerivce.set(this.localStorageSerivce.ACCESS_TOKEN, this.accessToken);
+    this.localStorageSerivce.set(this.localStorageSerivce.USER_EMAIL, this.emailUser);
+    this.localStorageSerivce.set(this.localStorageSerivce.USER_ID, this.idUser);
+    this.localStorageSerivce.set(this.localStorageSerivce.USER_NAME, this.nameUser);
   }
 
 }

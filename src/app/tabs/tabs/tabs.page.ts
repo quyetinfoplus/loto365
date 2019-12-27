@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalstorageService } from 'src/app/service/localstorage.service';
 
 @Component({
   selector: 'app-tabs',
@@ -11,12 +12,17 @@ export class TabsPage implements OnInit {
   colorTD: any;
   colorPT: any;
   colorChat: any;
+  userName: any;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private localStorageService: LocalstorageService
+    ) {
     this.colorKQ = 'burlywood';
     this.colorTD = '#FFFFFF';
     this.colorPT = '#FFFFFF';
     this.colorChat = '#FFFFFF';
+    this.userName = this.localStorageService.get(this.localStorageService.USER_NAME);
   }
   ngOnInit() {
   }
