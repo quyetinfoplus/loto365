@@ -499,7 +499,7 @@ export class KetquaPage implements OnInit {
     this.isErrorMt = false;
     this.isFirstTimeLoadingMt = false;
     this.onShowGridMT = true;
-    if (response.ngaychot.substring( 0, response.ngaychot.indexOf(',')) === 'Thứ Bảy') {
+    if (response.ngaychot.substring( 0, response.ngaychot.indexOf(',')) === 'Thứ Bảy' || response.ngaychot.substring( 0, response.ngaychot.indexOf(',')) === 'Thứ Năm') {
       this.isThuBayMt = true;
       this.locationMienTrung1 = response.lotto[0].location;
       this.locationMienTrung2 = response.lotto[1].location;
