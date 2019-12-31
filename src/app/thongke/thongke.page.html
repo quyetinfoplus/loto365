@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons mode="ios" slot="start" class="icon-toolbar">
+      <ion-back-button text="" defaultHref="tabs/navi" class="back-button"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">Thống Kê</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-text class="txt-so-ngay-tk">Số ngày thống kê</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-input class="input-ngay-thong-ke"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-button class="btn-thongke">Thống kê</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-slides [options]="slideOpts" class="slides">
+    <ion-slide *ngFor="let number of arrayNumber2">
+      <ion-grid>
+        <ion-row *ngFor="let kqByDate of arrayKqByDate">
+          <ion-col class="slide-number" >
+            {{number}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+  <!-- [ngStyle]="{'background-color': number in  : '#5f6061'}" -->
+</ion-content>

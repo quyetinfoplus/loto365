@@ -83,19 +83,141 @@ export class KetquaPage implements OnInit {
   previousYdm: any;
   hour: number;
   dateCurrent: string;
+  previousYmdMienNam: string;
+  ymdMienNam: string;
+  location1MienNam2: any;
+  location1MienNam1: any;
+  location1MienNam3: any;
+  giaiTamLocationMn1: any;
+  giaiTamLocationMn2: any;
+  giaiTamLocationMn3: any;
+  giaiBayLocationMn1: any;
+  giaiBayLocationMn2: any;
+  giaiBayLocationMn3: any;
+  giaiSauLocationMn1: any;
+  giaiSauLocationMn2: any;
+  giaiSauLocationMn3: any;
+  giaiNamLocationMn1: any;
+  giaiNamLocationMn2: any;
+  giaiNamLocationMn3: any;
+  giaiTuLocationMn1: any;
+  giaiTuLocationMn3: any;
+  giaiTuLocationMn2: any;
+  giaiBaLocationMn1: any;
+  giaiBaLocationMn2: any;
+  giaiBaLocationMn3: any;
+  giaiNhiLocationMn1: any;
+  giaiNhiLocationMn2: any;
+  giaiNhiLocationMn3: any;
+  giaiNhatLocationMn1: any;
+  giaiNhatLocationMn2: any;
+  giaiNhatLocationMn3: any;
+  giaiDBLocationMn1: any;
+  giaiDBLocationMn2: any;
+  giaiDBLocationMn3: any;
+  onShowGridMN: boolean;
+  modelDateMnam: string;
+  valueDateMnam: string;
+  isErrorMn: boolean;
+  errorMn: boolean;
+  isFirstTimeLoadingMn: boolean;
+  location1MienNam4: any;
+  giaiTamLocationMn4: any;
+  giaiBayLocationMn4: any;
+  giaiSauLocationMn4: any;
+  giaiNamLocationMn4: any;
+  giaiTuLocationMn4: any;
+  giaiBaLocationMn4: any;
+  giaiNhiLocationMn4: any;
+  giaiNhatLocationMn4: any;
+  giaiDBLocationMn4: any;
+  isThuBayMn: boolean;
+  isThuBayMt: boolean;
+  onShowGridMT: boolean;
+  modelDateMtrung: string;
+  ymdMienTrung: string;
+  previousYmdMienTrung: string;
+  valueDateMtrung: string;
+  giaiTamMT2: any;
+  giaiTamMT1: any;
+  giaiBayMT1: any;
+  giaiBayMT2: any;
+  giaiSauMT11: any;
+  giaiSauMT12: any;
+  giaiSauMT13: any;
+  giaiSauMT21: any;
+  giaiSauMT22: any;
+  giaiSauMT23: any;
+  giaiNamMT1: any;
+  giaiNamMT2: any;
+  giaiTuMT11: any;
+  giaiTuMT12: any;
+  giaiTuMT13: any;
+  giaiTuMT14: any;
+  giaiTuMT15: any;
+  giaiTuMT16: any;
+  giaiTuMT17: any;
+  giaiTuMT21: any;
+  giaiTuMT22: any;
+  giaiTuMT23: any;
+  giaiTuMT24: any;
+  giaiTuMT25: any;
+  giaiTuMT26: any;
+  giaiTuMT27: any;
+  giaiBaMT11: any;
+  giaiBaMT12: any;
+  giaiBaMT21: any;
+  giaiBaMT22: any;
+  giaiNhiMT1: any;
+  giaiNhiMT2: any;
+  giaiNhatMT2: any;
+  giaiNhatMT1: any;
+  giaiDBMT1: any;
+  giaiDBMT2: any;
+  locationMienTrung1: any;
+  locationMienTrung2: any;
+  giaiTamMT3: any;
+  giaiBayMT3: any;
+  giaiSauMT31: any;
+  giaiSauMT32: any;
+  giaiSauMT33: any;
+  giaiNamMT3: any;
+  giaiTuMT31: any;
+  giaiTuMT32: any;
+  giaiTuMT33: any;
+  giaiTuMT34: any;
+  giaiTuMT35: any;
+  giaiTuMT36: any;
+  giaiTuMT37: any;
+  giaiBaMT31: any;
+  giaiBaMT32: any;
+  giaiNhiMT3: any;
+  giaiNhatMT3: any;
+  giaiDBMT3: any;
+  isErrorMt: boolean;
+  isFirstTimeLoadingMt: boolean;
+  onShowGridMt: boolean;
+  locationMienTrung3: any;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
     private localStorageService: LocalstorageService,
     private envService: EnvService
   ) {
+    this.isThuBayMn = false;
+    this.isThuBayMt = false;
     this.dateCurrent = this.datepipe.transform(this.date, 'yyyy-MM-dd');
     this.isError = true;
     this.originThu = this.date.getDay() + 1;
     this.originDay = this.date.getDate();
     this.originMonth = this.date.getMonth() + 1;
     this.originYear = this.date.getFullYear();
-    this.thu = this.date.getDay() + 1;
+    this.hour = this.date.getHours();
+    if (this.hour > 17) {
+      this.thu = this.date.getDay() + 1;
+    } else {
+      this.thu = this.date.getDay();
+    }
     switch (this.thu) {
       case 2:
         this.thu = 'Thứ Hai';
@@ -137,7 +259,6 @@ export class KetquaPage implements OnInit {
     this.year = this.date.getFullYear();
     this.ymd = this.year + '-' + this.month + '-' + this.day;
     this.previousYdm = this.year + '-' + this.month + '-' + this.previousDay;
-    this.hour = this.date.getHours();
   }
 
   ngOnInit() {
@@ -155,26 +276,33 @@ export class KetquaPage implements OnInit {
       this.reloadDataMienBac(this.previousYdm);
       this.modelDate = this.previousYdm;
     }
+    if (this.hour > 18) {
+      this.modelDateMnam = this.ymd;
+      this.modelDateMtrung = this.ymd;
+    } else {
+      this.modelDateMnam = this.previousYdm;
+      this.modelDateMtrung = this.previousYdm;
+    }
   }
 
-  loadData(ngaychot) {
-    const urlLoadDataKetQua = this.envService.API_URL + this.envService.URL_LOAD_DATA_KET_QUA;
+  loadDataMienBac(ngaychot) {
+    const urlLoadDataKetQua = this.envService.API_URL + this.envService.URL_LOAD_DATA_KET_QUA_MB;
     const params = [];
     params.push({ key: 'ngaychot', value: ngaychot });
     this.requestService.get(urlLoadDataKetQua, params, undefined,
-      (response) => this.onSuccessLoadData(response),
-      (error) => this.onError(error),
+      (response) => this.onSuccessLoadDataMienBac(response),
+      (error) => this.onErrorMienBac(error),
       () => { });
   }
 
-  onError(onError) {
+  onErrorMienBac(onError) {
     this.isError = true;
     this.error = true;
     this.isFirstTimeLoading = false;
   }
 
 
-  onSuccessLoadData(response) {
+  onSuccessLoadDataMienBac(response) {
     this.onShowGridMB = true;
     this.isError = false;
     this.isFirstTimeLoading = false;
@@ -228,19 +356,322 @@ export class KetquaPage implements OnInit {
     this.arrayDit9 = response[0].dit9;
   }
 
+  loadDataMienNam(ngaychot) {
+    const urlLoadDataKetQua = this.envService.API_URL + this.envService.URL_LOAD_DATA_KET_QUA_MN;
+    const params = [];
+    params.push({ key: 'ngaychot', value: ngaychot });
+    this.requestService.get(urlLoadDataKetQua, params, undefined,
+      (response) => this.onSuccessLoadDataMienNam(response),
+      (error) => this.onErrorMienNam(error),
+      () => { });
+  }
+
+  onErrorMienNam(error) {
+    this.isErrorMn = true;
+    this.errorMn = true;
+    this.isFirstTimeLoadingMn = false;
+  }
+
+  onSuccessLoadDataMienNam(response) {
+    this.isErrorMn = false;
+    this.isFirstTimeLoadingMn = false;
+    this.onShowGridMN = true;
+    if (response.ngaychot.substring( 0, response.ngaychot.indexOf(',')) === 'Thứ Bảy') {
+      this.isThuBayMn = true;
+      this.location1MienNam1 = response.lotto[0].location;
+      this.location1MienNam2 = response.lotto[1].location;
+      this.location1MienNam3 = response.lotto[2].location;
+
+      this.giaiTamLocationMn1 = response.lotto[0].kq17;
+      this.giaiTamLocationMn2 = response.lotto[1].kq17;
+      this.giaiTamLocationMn3 = response.lotto[2].kq17;
+
+      this.giaiBayLocationMn1 = response.lotto[0].kq16;
+      this.giaiBayLocationMn2 = response.lotto[1].kq16;
+      this.giaiBayLocationMn3 = response.lotto[2].kq16;
+
+      this.giaiSauLocationMn1 = response.lotto[0].kq15;
+      this.giaiSauLocationMn2 = response.lotto[1].kq15;
+      this.giaiSauLocationMn3 = response.lotto[2].kq15;
+
+      this.giaiNamLocationMn1 = response.lotto[0].kq14;
+      this.giaiNamLocationMn2 = response.lotto[1].kq14;
+      this.giaiNamLocationMn3 = response.lotto[2].kq14;
+
+      this.giaiTuLocationMn1 = response.lotto[0].kq13;
+      this.giaiTuLocationMn2 = response.lotto[1].kq13;
+      this.giaiTuLocationMn3 = response.lotto[2].kq13;
+
+      this.giaiBaLocationMn1 = response.lotto[0].kq12;
+      this.giaiBaLocationMn2 = response.lotto[1].kq12;
+      this.giaiBaLocationMn3 = response.lotto[2].kq12;
+
+      this.giaiNhiLocationMn1 = response.lotto[0].kq11;
+      this.giaiNhiLocationMn2 = response.lotto[1].kq11;
+      this.giaiNhiLocationMn3 = response.lotto[2].kq11;
+
+      this.giaiNhatLocationMn1 = response.lotto[0].kq10;
+      this.giaiNhatLocationMn2 = response.lotto[1].kq10;
+      this.giaiNhatLocationMn3 = response.lotto[2].kq10;
+
+      this.giaiDBLocationMn1 = response.lotto[0].kq9;
+      this.giaiDBLocationMn2 = response.lotto[1].kq9;
+      this.giaiDBLocationMn3 = response.lotto[2].kq9;
+
+      this.location1MienNam4 = response.lotto[3].location;
+      this.giaiTamLocationMn4 = response.lotto[3].kq17;
+      this.giaiBayLocationMn4 = response.lotto[3].kq16;
+      this.giaiSauLocationMn4 = response.lotto[3].kq15;
+      this.giaiNamLocationMn4 = response.lotto[3].kq14;
+      this.giaiTuLocationMn4 = response.lotto[3].kq13;
+      this.giaiBaLocationMn4 = response.lotto[3].kq12;
+      this.giaiNhiLocationMn4 = response.lotto[3].kq11;
+      this.giaiNhatLocationMn4 = response.lotto[3].kq10;
+      this.giaiDBLocationMn4 = response.lotto[3].kq9;
+    } else {
+      this.isThuBayMn = false;
+      this.location1MienNam1 = response.lotto[0].location;
+      this.location1MienNam2 = response.lotto[1].location;
+      this.location1MienNam3 = response.lotto[2].location;
+
+      this.giaiTamLocationMn1 = response.lotto[0].kq17;
+      this.giaiTamLocationMn2 = response.lotto[1].kq17;
+      this.giaiTamLocationMn3 = response.lotto[2].kq17;
+
+      this.giaiBayLocationMn1 = response.lotto[0].kq16;
+      this.giaiBayLocationMn2 = response.lotto[1].kq16;
+      this.giaiBayLocationMn3 = response.lotto[2].kq16;
+
+      this.giaiSauLocationMn1 = response.lotto[0].kq15;
+      this.giaiSauLocationMn2 = response.lotto[1].kq15;
+      this.giaiSauLocationMn3 = response.lotto[2].kq15;
+
+      this.giaiNamLocationMn1 = response.lotto[0].kq14;
+      this.giaiNamLocationMn2 = response.lotto[1].kq14;
+      this.giaiNamLocationMn3 = response.lotto[2].kq14;
+
+      this.giaiTuLocationMn1 = response.lotto[0].kq13;
+      this.giaiTuLocationMn2 = response.lotto[1].kq13;
+      this.giaiTuLocationMn3 = response.lotto[2].kq13;
+
+      this.giaiBaLocationMn1 = response.lotto[0].kq12;
+      this.giaiBaLocationMn2 = response.lotto[1].kq12;
+      this.giaiBaLocationMn3 = response.lotto[2].kq12;
+
+      this.giaiNhiLocationMn1 = response.lotto[0].kq11;
+      this.giaiNhiLocationMn2 = response.lotto[1].kq11;
+      this.giaiNhiLocationMn3 = response.lotto[2].kq11;
+
+      this.giaiNhatLocationMn1 = response.lotto[0].kq10;
+      this.giaiNhatLocationMn2 = response.lotto[1].kq10;
+      this.giaiNhatLocationMn3 = response.lotto[2].kq10;
+
+      this.giaiDBLocationMn1 = response.lotto[0].kq9;
+      this.giaiDBLocationMn2 = response.lotto[1].kq9;
+      this.giaiDBLocationMn3 = response.lotto[2].kq9;
+    }
+  }
+
+  reloadDataMienNam(ngaychot) {
+    this.loadDataMienNam(ngaychot);
+  }
+
+  reloadDataMienTrung(ngaychot) {
+    this.loadDataMienTrung(ngaychot);
+  }
+
+  loadDataMienTrung(ngaychot) {
+    const urlLoadDataKetQua = this.envService.API_URL + this.envService.URL_LOAD_DATA_KET_QUA_MT;
+    const params = [];
+    params.push({ key: 'ngaychot', value: ngaychot });
+    this.requestService.get(urlLoadDataKetQua, params, undefined,
+      (response) => this.onSuccessLoadDataMienTrung(response),
+      (error) => this.onErrorMientrung(error),
+      () => { });
+  }
+
+  onErrorMientrung(error) {
+    console.log(error);
+  }
+
+  onSuccessLoadDataMienTrung(response) {
+    console.log(response);
+    this.isErrorMt = false;
+    this.isFirstTimeLoadingMt = false;
+    this.onShowGridMT = true;
+    if (response.ngaychot.substring( 0, response.ngaychot.indexOf(',')) === 'Thứ Bảy') {
+      this.isThuBayMt = true;
+      this.locationMienTrung1 = response.lotto[0].location;
+      this.locationMienTrung2 = response.lotto[1].location;
+      this.locationMienTrung3 = response.lotto[2].location;
+      this.giaiTamMT1 = response.lotto[0].kq17;
+      this.giaiTamMT2 = response.lotto[1].kq17;
+      this.giaiTamMT3 = response.lotto[2].kq17;
+
+      this.giaiBayMT1 = response.lotto[0].kq16;
+      this.giaiBayMT2 = response.lotto[1].kq16;
+      this.giaiBayMT3 = response.lotto[2].kq16;
+
+      this.giaiSauMT11 = response.lotto[0].kq15;
+      this.giaiSauMT12 = response.lotto[0].kq14;
+      this.giaiSauMT13 = response.lotto[0].kq13;
+
+      this.giaiSauMT21 = response.lotto[1].kq15;
+      this.giaiSauMT22 = response.lotto[1].kq14;
+      this.giaiSauMT23 = response.lotto[1].kq13;
+
+      this.giaiSauMT31 = response.lotto[2].kq15;
+      this.giaiSauMT32 = response.lotto[2].kq14;
+      this.giaiSauMT33 = response.lotto[2].kq13;
+
+      this.giaiNamMT1 = response.lotto[0].kq12;
+      this.giaiNamMT2 = response.lotto[1].kq12;
+      this.giaiNamMT3 = response.lotto[2].kq12;
+
+      this.giaiTuMT11 = response.lotto[0].kq11;
+      this.giaiTuMT12 = response.lotto[0].kq10;
+      this.giaiTuMT13 = response.lotto[0].kq9;
+      this.giaiTuMT14 = response.lotto[0].kq8;
+      this.giaiTuMT15 = response.lotto[0].kq7;
+      this.giaiTuMT16 = response.lotto[0].kq6;
+      this.giaiTuMT17 = response.lotto[0].kq5;
+
+      this.giaiTuMT21 = response.lotto[1].kq11;
+      this.giaiTuMT22 = response.lotto[1].kq10;
+      this.giaiTuMT23 = response.lotto[1].kq9;
+      this.giaiTuMT24 = response.lotto[1].kq8;
+      this.giaiTuMT25 = response.lotto[1].kq7;
+      this.giaiTuMT26 = response.lotto[1].kq6;
+      this.giaiTuMT27 = response.lotto[1].kq5;
+
+      this.giaiTuMT31 = response.lotto[2].kq11;
+      this.giaiTuMT32 = response.lotto[2].kq10;
+      this.giaiTuMT33 = response.lotto[2].kq9;
+      this.giaiTuMT34 = response.lotto[2].kq8;
+      this.giaiTuMT35 = response.lotto[2].kq7;
+      this.giaiTuMT36 = response.lotto[2].kq6;
+      this.giaiTuMT37 = response.lotto[2].kq5;
+
+      this.giaiBaMT11 = response.lotto[0].kq4;
+      this.giaiBaMT12 = response.lotto[0].kq3;
+
+      this.giaiBaMT21 = response.lotto[1].kq4;
+      this.giaiBaMT22 = response.lotto[1].kq3;
+
+      this.giaiBaMT31 = response.lotto[2].kq4;
+      this.giaiBaMT32 = response.lotto[2].kq3;
+
+      this.giaiNhiMT1 = response.lotto[0].kq2;
+      this.giaiNhiMT2 = response.lotto[1].kq2;
+      this.giaiNhiMT3 = response.lotto[2].kq2;
+
+      this.giaiNhatMT1 = response.lotto[0].kq1;
+      this.giaiNhatMT2 = response.lotto[1].kq1;
+      this.giaiNhatMT3 = response.lotto[2].kq1;
+
+      this.giaiDBMT1 = response.lotto[0].kq0;
+      this.giaiDBMT2 = response.lotto[1].kq0;
+      this.giaiDBMT3 = response.lotto[2].kq0;
+    } else {
+      this.isThuBayMt = false;
+      this.locationMienTrung1 = response.lotto[0].location;
+      this.locationMienTrung2 = response.lotto[1].location;
+      this.giaiTamMT1 = response.lotto[0].kq17;
+      this.giaiTamMT2 = response.lotto[1].kq17;
+
+      this.giaiBayMT1 = response.lotto[0].kq16;
+      this.giaiBayMT2 = response.lotto[1].kq16;
+
+      this.giaiSauMT11 = response.lotto[0].kq15;
+      this.giaiSauMT12 = response.lotto[0].kq14;
+      this.giaiSauMT13 = response.lotto[0].kq13;
+
+      this.giaiSauMT21 = response.lotto[1].kq15;
+      this.giaiSauMT22 = response.lotto[1].kq14;
+      this.giaiSauMT23 = response.lotto[1].kq13;
+
+      this.giaiNamMT1 = response.lotto[0].kq12;
+      this.giaiNamMT2 = response.lotto[1].kq12;
+
+      this.giaiTuMT11 = response.lotto[0].kq11;
+      this.giaiTuMT12 = response.lotto[0].kq10;
+      this.giaiTuMT13 = response.lotto[0].kq9;
+      this.giaiTuMT14 = response.lotto[0].kq8;
+      this.giaiTuMT15 = response.lotto[0].kq7;
+      this.giaiTuMT16 = response.lotto[0].kq6;
+      this.giaiTuMT17 = response.lotto[0].kq5;
+
+      this.giaiTuMT21 = response.lotto[1].kq11;
+      this.giaiTuMT22 = response.lotto[1].kq10;
+      this.giaiTuMT23 = response.lotto[1].kq9;
+      this.giaiTuMT24 = response.lotto[1].kq8;
+      this.giaiTuMT25 = response.lotto[1].kq7;
+      this.giaiTuMT26 = response.lotto[1].kq6;
+      this.giaiTuMT27 = response.lotto[1].kq5;
+
+      this.giaiBaMT11 = response.lotto[0].kq4;
+      this.giaiBaMT12 = response.lotto[0].kq3;
+
+      this.giaiBaMT21 = response.lotto[1].kq4;
+      this.giaiBaMT22 = response.lotto[1].kq3;
+
+      this.giaiNhiMT1 = response.lotto[0].kq2;
+      this.giaiNhiMT2 = response.lotto[1].kq2;
+
+      this.giaiNhatMT1 = response.lotto[0].kq1;
+      this.giaiNhatMT2 = response.lotto[1].kq1;
+
+      this.giaiDBMT1 = response.lotto[0].kq0;
+      this.giaiDBMT2 = response.lotto[1].kq0;
+    }
+  }
+
   onSegmentChanged(event) {
     this.selectedSegment = event.target.value;
     if (this.selectedSegment === 'mienbac') {
+      this.isError = true;
+      this.isFirstTimeLoading = true;
+      this.onShowGridMB = false;
       this.mienbacShow = true;
       this.miennamShow = false;
       this.mientrungShow = false;
+      if (this.hour > 19) {
+        this.modelDate = this.ymd;
+      } else {
+        this.modelDate = this.previousYdm;
+      }
+      this.reloadDataMienBac(this.modelDate);
     }
     if (this.selectedSegment === 'mientrung') {
+      this.onShowGridMT = false;
+      this.isErrorMt = true;
+      this.isFirstTimeLoadingMt = true;
       this.mienbacShow = false;
       this.mientrungShow = true;
       this.miennamShow = false;
+      if (this.hour > 18) {
+        this.modelDateMtrung = this.ymd;
+        this.ymdMienTrung = this.day + '/' + this.month;
+        this.reloadDataMienTrung(this.ymdMienTrung);
+      } else {
+        this.modelDateMtrung = this.previousYdm;
+        this.previousYmdMienTrung = this.previousDay + '/' + this.month;
+        this.reloadDataMienTrung(this.previousYmdMienTrung);
+      }
     }
     if (this.selectedSegment === 'miennam') {
+      this.isErrorMn = true;
+      this.isFirstTimeLoadingMn = true;
+      this.onShowGridMN = false;
+      if (this.hour > 18) {
+        this.modelDateMnam = this.ymd;
+        this.ymdMienNam = this.day + '/' + this.month;
+        this.reloadDataMienNam(this.ymdMienNam);
+      } else {
+        this.modelDateMnam = this.previousYdm;
+        this.previousYmdMienNam = this.previousDay + '/' + this.month;
+        this.reloadDataMienNam(this.previousYmdMienNam);
+      }
       this.mienbacShow = false;
       this.mientrungShow = false;
       this.miennamShow = true;
@@ -306,6 +737,16 @@ export class KetquaPage implements OnInit {
     this.reloadDataMienBac(this.valueDate);
   }
 
+  onChangeDateTimeMienNam(event) {
+    this.valueDateMnam = this.datepipe.transform(event.target.value, 'dd/MM');
+    this.reloadDataMienNam(this.valueDateMnam);
+  }
+
+  onChangeDateTimeMienTrung(event) {
+    this.valueDateMtrung = this.datepipe.transform(event.target.value, 'dd/MM');
+    this.reloadDataMienTrung(this.valueDateMtrung);
+  }
+
   reloadDataMienBac(ngaychot) {
     this.kqDB = '';
     this.kqNhat = '';
@@ -355,6 +796,6 @@ export class KetquaPage implements OnInit {
     this.arrayDit7 = [];
     this.arrayDit8 = [];
     this.arrayDit9 = [];
-    this.loadData(ngaychot);
+    this.loadDataMienBac(ngaychot);
   }
 }

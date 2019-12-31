@@ -99,25 +99,25 @@ ion-header {
 
 .txt-dacbiet {
   color: red;
-  font-size: 16px;
-  font-family: "Roboto";
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .txt-giai {
   color: #000000;
-  font-size: 16px;
-  font-family: "Roboto";
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .txt-value-dacbiet {
   color: red;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 
 .txt-value-giai {
   color: #000000;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -155,3 +155,51 @@ ion-header {
   margin-left: 15%;
   font-weight: 600;
 }
+
+.border-top-left {
+  border-top: 1px inset grey;
+  border-left: 1px inset grey;
+}
+
+.border-top-left-right {
+  border-top: 1px inset grey;
+  border-left: 1px inset grey;
+  border-right: 1px inset grey;
+}
+
+.border-bottom {
+  border-bottom: 1px inset grey;
+}
+
+.text-datetime-mien-nam {
+  font-size: 14px;
+}
+
+.txt-giai-tam-mien-nam {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ff0000;
+}
+
+.try-again-button {
+  text-align: center;
+}
+
+.location {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1565c0;
+}
+
+.border-top-right {
+  border-top: 1px inset grey;
+  border-right: 1px inset grey;
+}
+
+.line-height-3 {
+  line-height: 3;
+}
+
+
+
+

@@ -18,6 +18,7 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
+
   <div *ngIf="mienbacShow">
     <ion-grid class="grid-date-time" *ngIf="onShowGridMB">
       <ion-row>
@@ -25,7 +26,8 @@
           <ion-item lines="none" class="itemDateTime">
             <img class="img-calendar" src="assets/img/calendar.svg" />
             <ion-text class="txt-date-time">{{thu}}</ion-text>
-            <ion-datetime displayFormat="DD-MM-YYYY" max="{{ymd}}" [(ngModel)]="modelDate" (ionChange)="onChangeDateTime($event)">
+            <ion-datetime displayFormat="DD-MM-YYYY" max="{{ymd}}" [(ngModel)]="modelDate"
+              (ionChange)="onChangeDateTime($event)">
             </ion-datetime>
           </ion-item>
         </ion-col>
@@ -299,9 +301,441 @@
     </ion-row>
   </div>
   <div *ngIf="mientrungShow">
-    <ion-text>Mien Trung</ion-text>
+    <ion-grid class="grid-date-time" *ngIf="onShowGridMT">
+      <ion-row>
+        <ion-col mode="ios" class="col-arrow-datetime">
+          <ion-item lines="none" class="itemDateTime">
+            <img class="img-calendar" src="assets/img/calendar.svg" />
+            <ion-text class="txt-date-time">{{thu}}</ion-text>
+            <ion-datetime displayFormat="DD-MM-YYYY" max="{{ymd}}" [(ngModel)]="modelDateMtrung"
+              (ionChange)="onChangeDateTimeMienTrung($event)">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid  *ngIf="onShowGridMT">
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="text-datetime-mien-nam location">
+            Thứ 2
+          </ion-text>
+          <br>
+          <ion-text class="text-datetime-mien-nam location">
+            12-03-2019
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="location">{{locationMienTrung1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="location">{{locationMienTrung2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right"  *ngIf="isThuBayMt">
+          <ion-text class="location">{{locationMienTrung3}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Tám</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiTamMT1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiTamMT2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMt">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiTamMT3}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Bảy</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiBayMT1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiBayMT2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMt">
+          <ion-text class="txt-value-giai">{{giaiBayMT3}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai line-height-3">Giải Sáu</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiSauMT11}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiSauMT12}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiSauMT13}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiSauMT21}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiSauMT22}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiSauMT23}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMt">
+          <ion-text class="txt-value-giai">{{giaiSauMT31}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiSauMT32}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiSauMT33}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Năm</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiNamMT1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiNamMT2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMt">
+          <ion-text class="txt-value-giai">{{giaiNamMT3}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Tư</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiTuMT11}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT12}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT13}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT14}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT15}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT16}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT17}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiTuMT21}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT22}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT23}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT24}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT25}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT26}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT27}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMt">
+          <ion-text class="txt-value-giai">{{giaiTuMT31}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT32}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT33}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT34}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT35}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT36}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiTuMT37}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Ba</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiBaMT11}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiBaMT12}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiBaMT21}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiBaMT22}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMt">
+          <ion-text class="txt-value-giai">{{giaiBaMT31}}</ion-text>
+          <br>
+          <ion-text class="txt-value-giai">{{giaiBaMT32}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Nhì</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiNhiMT1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiNhiMT2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMt">
+          <ion-text class="txt-value-giai">{{giaiNhiMT3}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Nhất</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiNhatMT1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiNhatMT2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMt">
+          <ion-text class="txt-value-giai">{{giaiNhatMT3}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left border-bottom">
+          <ion-text class="txt-giai">Giải ĐB</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left border-bottom">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiDBMT1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right border-bottom">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiDBMT2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right border-bottom" *ngIf="isThuBayMt">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiDBMT3}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-center" style='margin-top: 30%;' *ngIf="isErrorMt">
+      <ion-spinner class="spinner" name="lines" *ngIf="isFirstTimeLoadingMt"></ion-spinner>
+      <div class="try-again-button" *ngIf="errorMt">
+        <ion-text>Error happens.Try again !</ion-text>
+        <br>
+        <ion-button shape="round" color="light" (click)="retry()">
+          Try again
+        </ion-button>
+      </div>
+    </ion-row>
   </div>
   <div *ngIf="miennamShow">
-    <ion-text>Mien Nam</ion-text>
+    <ion-grid class="grid-date-time" *ngIf="onShowGridMN">
+      <ion-row>
+        <ion-col mode="ios" class="col-arrow-datetime">
+          <ion-item lines="none" class="itemDateTime">
+            <img class="img-calendar" src="assets/img/calendar.svg" />
+            <ion-text class="txt-date-time">{{thu}}</ion-text>
+            <ion-datetime displayFormat="DD-MM-YYYY" max="{{ymd}}" [(ngModel)]="modelDateMnam"
+              (ionChange)="onChangeDateTimeMienNam($event)">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="onShowGridMN">
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="text-datetime-mien-nam location">
+            Thứ 2
+          </ion-text>
+          <br>
+          <ion-text class="text-datetime-mien-nam location">
+            12-03-2019
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="location">
+            {{location1MienNam1}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="location">
+            {{location1MienNam2}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="location">
+            {{location1MienNam3}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMn">
+          <ion-text  class="location">
+            {{location1MienNam4}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Tám</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiTamLocationMn1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiTamLocationMn2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiTamLocationMn3}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMn">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiTamLocationMn4}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Bảy</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiBayLocationMn1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiBayLocationMn2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiBayLocationMn3}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMn">
+          <ion-text class="txt-value-giai">{{giaiBayLocationMn4}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Sáu</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiSauLocationMn1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiSauLocationMn2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiSauLocationMn3}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMn">
+          <ion-text class="txt-value-giai">{{giaiSauLocationMn4}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Năm</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiNamLocationMn1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiNamLocationMn2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiNamLocationMn3}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMn">
+          <ion-text class="txt-value-giai">{{giaiNamLocationMn4}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Bốn</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiTuLocationMn1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiTuLocationMn2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiTuLocationMn3}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMn">
+          <ion-text class="txt-value-giai">{{giaiTuLocationMn4}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Ba</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiBaLocationMn1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiBaLocationMn2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiBaLocationMn3}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMn">
+          <ion-text class="txt-value-giai">{{giaiBaLocationMn4}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Nhì</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiNhiLocationMn1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiNhiLocationMn2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiNhiLocationMn3}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMn">
+          <ion-text class="txt-value-giai">{{giaiNhiLocationMn4}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-giai">Giải Nhất</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiNhatLocationMn1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left">
+          <ion-text class="txt-value-giai">{{giaiNhatLocationMn2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right">
+          <ion-text class="txt-value-giai">{{giaiNhatLocationMn3}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMn">
+          <ion-text class="txt-value-giai">{{giaiNhatLocationMn4}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col-center border-top-left border-bottom">
+          <ion-text class="txt-giai">Giải ĐB</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left border-bottom">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiDBLocationMn1}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left border-bottom">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiDBLocationMn2}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-left-right border-bottom">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiDBLocationMn3}}</ion-text>
+        </ion-col>
+        <ion-col class="col-center border-top-right border-bottom" *ngIf="isThuBayMn">
+          <ion-text class="txt-giai-tam-mien-nam">{{giaiDBLocationMn4}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-center" style='margin-top: 30%;' *ngIf="isErrorMn">
+      <ion-spinner class="spinner" name="lines" *ngIf="isFirstTimeLoadingMn"></ion-spinner>
+      <div class="try-again-button" *ngIf="errorMn">
+        <ion-text>Error happens.Try again !</ion-text>
+        <br>
+        <ion-button shape="round" color="light" (click)="retry()">
+          Try again
+        </ion-button>
+      </div>
+    </ion-row>
   </div>
 </ion-content>

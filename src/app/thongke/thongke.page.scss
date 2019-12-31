@@ -1,0 +1,36 @@
+ion-toolbar {
+  --background: #1565c0;
+}
+
+.back-button {
+  --color: #ffffff;
+}
+
+.title {
+  color: #ffffff;
+}
+
+.slide-number {
+    border: 1px double grey;
+}
+
+.slides {
+    margin-top: 5%;
+}
+
+.btn-thongke {
+    --background:#1565c0;
+    height: 35px;
+    font-size: 14px;
+}
+
+.input-ngay-thong-ke {
+    border: 1px double grey;
+    border-radius: 5px;
+}
+
+.txt-so-ngay-tk {
+    line-height: 3;
+    font-size: 13px;
+    font-weight: 600;
+}
