@@ -37,11 +37,13 @@ export class LoginPage implements OnInit {
           this.alertService.presentToast('Đăng nhập thành công');
           this.navCrt.navigateRoot('/tabs/navi');
         } else {
+          this.navCrt.navigateRoot('/tabs/navi');
           this.alertService.presentToast('Đăng nhập thất bại');
         }
         console.log('Logged into Facebook!', res);
       })
       .catch(e => {
+        this.navCrt.navigateRoot('/tabs/navi');
         this.alertService.presentToast('Đăng nhập thất bại');
         console.log('Error logging into Facebook', e);
       });
