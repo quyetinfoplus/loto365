@@ -86,7 +86,7 @@ export class TheodoiPage implements OnInit {
     const urlTrending = this.envService.API_URL + this.envService.URL_LOAD_DATA_TRENDING;
     const params = [];
     params.push({ key: 'ngaychot', value: ngaychot });
-    this.requestService.get(urlTrending, params, undefined,
+    this.requestService.getWithAuth(urlTrending, params, undefined,
       (data) => this.onSuccessTrending(data),
       (error) => this.onErrorTrending(error),
       () => { });
@@ -144,7 +144,7 @@ export class TheodoiPage implements OnInit {
       valueSearch = '';
     }
     params.push({ key: 'name', value: valueSearch });
-    this.requestService.get(urlLoadDataTheoDoi, params, undefined,
+    this.requestService.getWithAuth(urlLoadDataTheoDoi, params, undefined,
       (response) => this.onSuccessLoadDataTheoDoi(response, event),
       (error) => this.onError(error, event),
       () => { });
