@@ -21,16 +21,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-slides [options]="slideOpts" class="slides">
-    <ion-slide *ngFor="let number of arrayNumber2">
-      <ion-grid>
-        <ion-row *ngFor="let kqByDate of arrayKqByDate">
-          <ion-col class="slide-number" >
-            {{number}}
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
-  </ion-slides>
-  <!-- [ngStyle]="{'background-color': number in  : '#5f6061'}" -->
 </ion-content>

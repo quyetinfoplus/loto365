@@ -43,6 +43,7 @@ export class ThongkePage implements OnInit {
     for (let index = 10; index < 100; index++) {
       this.arrayNumber2.push(index.toString());
     }
+    console.log(this.arrayNumber2);
   }
 
   loadData() {
@@ -60,9 +61,11 @@ export class ThongkePage implements OnInit {
   }
 
   onSuccess(response: any) {
-    for (let index = 0; index < response[index].kqAr.replace(/[^a-zA-Z0-9]/g, '').length / 2; index++) {
-      this.arrayKqByDate.push(response[index].kqAr.replace(/[^a-zA-Z0-9]/g, '').substr(index * 2, 2));
-    }
+   console.log(response);
+   for (let index = 0; index < Object.keys(response).length; index++) {
+      this.arrayKqByDate.push(index);
+   }
+
   }
 
   ngOnInit() {
