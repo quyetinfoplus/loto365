@@ -71,6 +71,9 @@
           {{number}}</ion-text>
       </ion-col>
     </ion-row>
+    <div class="center" *ngIf="arrayNumber.length <= 0">
+      <ion-spinner name="lines"></ion-spinner>
+    </div>
   </ion-grid>
   <div class="div-text-kq-soi-cau">
     <ion-text class="text-kq-soi-cau">Kết quả soi cầu ngày {{currentDay}} tìm được {{soCau}} cầu có độ dài =
