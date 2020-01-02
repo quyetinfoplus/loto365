@@ -15,7 +15,7 @@
   <ion-grid class="grid-content-trending">
     <ion-row>
       <ion-col>
-        <div class="col-arrow-datetime" *ngIf="onLoadingTrending">
+        <div class="col-arrow-datetime center" *ngIf="onLoadingTrending">
           <ion-spinner></ion-spinner>
         </div>
         <div *ngIf="onShowShortTrending">
@@ -112,7 +112,7 @@
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Load more...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  <ion-row class="ion-align-items-center ion-justify-content-center" style='height: 100%'
+  <ion-row class="ion-align-items-center ion-justify-content-center" style='height: 50%'
     *ngIf="theodoiArrays.length <= 0">
     <ion-spinner class="spinner" name="lines" *ngIf="isFirstTimeLoading"></ion-spinner>
     <div class="no-data" *ngIf="noData">

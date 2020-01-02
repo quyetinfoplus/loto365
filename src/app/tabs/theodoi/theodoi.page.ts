@@ -63,8 +63,10 @@ export class TheodoiPage implements OnInit {
   }
 
   ionViewWillEnter(): void {
+    this.onLoadingTrending = true;
     this.searText = '';
     this.valueSearch = '';
+    this.isFirstTimeLoading = true;
     this.onShowShortTrending = true;
     this.onShowLongTrending = false;
     this.isSearch = false;

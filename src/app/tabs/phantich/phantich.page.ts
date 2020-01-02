@@ -70,7 +70,6 @@ export class PhantichPage implements OnInit {
     this.arrowTuyChon = 'arrow-dropdown';
     this.onShowTuyChon = true;
     this.selectNhay = '1';
-    this.onShowLoading = false;
     this.valueDateSelect = this.ngaychotCurrent;
     this.doDaiCau = 5;
     this.valueNhay = 1;
