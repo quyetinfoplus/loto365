@@ -39,6 +39,7 @@ export class PhantichPage implements OnInit {
   soCau: number;
   doDaiCauMax: any;
   rangDoDaiCau: number;
+  errorinfo: boolean;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
@@ -70,7 +71,6 @@ export class PhantichPage implements OnInit {
     this.arrowTuyChon = 'arrow-dropdown';
     this.onShowTuyChon = true;
     this.selectNhay = '1';
-    this.onShowLoading = false;
     this.valueDateSelect = this.ngaychotCurrent;
     this.doDaiCau = 5;
     this.valueNhay = 1;
@@ -121,6 +121,7 @@ export class PhantichPage implements OnInit {
 
   onError(error: any) {
     this.onShowLoading = false;
+    this.errorinfo = true;
   }
 
   onReloadDataPhanTich(ngaychot, soNgayCau, nhay, lon) {
@@ -132,6 +133,7 @@ export class PhantichPage implements OnInit {
 
   onSuccess(response) {
     this.onShowLoading = false;
+    this.errorinfo = false;
     if (response.caudep !== null) {
       this.arrayCauDepOrigin = response.caudep.replace(/[^a-zA-Z0-9]/g, '');
       // tslint:disable-next-line: prefer-for-of

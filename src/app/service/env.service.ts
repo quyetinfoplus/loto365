@@ -13,5 +13,8 @@ export class EnvService {
   URL_LOAD_DATA_TRENDING = 'kqxs/trending';
   URL_LOAD_DATA_PHAN_TICH = 'kqxs/caudep';
   URL_GET_MAX_DO_DAI_CAU = 'kqxs/limitday';
+  URL_POST_TOKEN = 'ums/login';
+  AUTH_PARAM = 'Authorization';
+  AUTH_PREFIX = 'Bearer ';
   constructor() { }
 }
