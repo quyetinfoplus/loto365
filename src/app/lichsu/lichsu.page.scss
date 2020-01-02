@@ -67,14 +67,14 @@ ion-toolbar {
 }
 
 .xem-ketqua {
-    width: 25%;
-    font-size: 13px;
-    height: 30px;
-    margin-left: 37.5%;
+  width: 25%;
+  font-size: 13px;
+  height: 30px;
+  margin-left: 37.5%;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .try-again-button {
@@ -82,77 +82,93 @@ ion-toolbar {
 }
 
 .col-db-center-1 {
-    text-align: center;
-    border-top: 1px inset grey;
-    border-left: 1px inset grey;
-    border-right: 1px inset grey;
+  text-align: center;
+  border-top: 1px inset grey;
+  border-left: 1px inset grey;
+  border-right: 1px inset grey;
 }
 
 .col-db-center-2 {
-    text-align: center;
-    border-top: 1px inset grey;
-    border-right: 1px inset grey;
+  text-align: center;
+  border-top: 1px inset grey;
+  border-right: 1px inset grey;
 }
 
 .col-bottom-center-1 {
-    text-align: center;
-    border-top: 1px inset #1565c0;
-    border-left: 1px inset #1565c0;
-    border-right: 1px inset #1565c0;
-    border-bottom: 1px inset #1565c0;
+  text-align: center;
+  border-top: 1px inset #000000;
+  border-left: 1px inset #000000;
+  border-right: 1px inset #000000;
+  border-bottom: 1px inset #000000;
 }
 
 .col-bottom-center-2 {
-    text-align: center;
-    border-top: 1px inset #1565c0;
-    border-right: 1px inset #1565c0;
-    border-bottom: 1px inset #1565c0;
+  text-align: center;
+  border-top: 1px inset #000000;
+  border-right: 1px inset #000000;
+  border-bottom: 1px inset #000000;
 }
 
 .txt-dacbiet {
-    color: red;
-    font-size: 14px;
-    font-family: 'Roboto';
-    font-weight: 600;
+  color: red;
+  font-size: 14px;
+  font-family: "Roboto";
+  font-weight: 600;
 }
 
 .row-ngay {
-    border-top: 1px inset #1565c0;
-    border-left: 1px inset #1565c0;
-    border-right: 1px inset #1565c0;
-    background-color: rgb(188, 225, 248);
+  border-top: 1px inset #000000;
+  border-left: 1px inset #000000;
+  border-right: 1px inset #000000;
+  background-color: rgb(188, 225, 248);
 }
 
 .txt-giai {
-    color: #000000;
-    font-size: 14px;
-    font-family: 'Roboto';
-    font-weight: 600;
+  color: #000000;
+  font-size: 14px;
+  font-family: "Roboto";
+  font-weight: 600;
 }
 
 .txt-ngay {
-    color: #1565c0;
-    font-family: 'Roboto';
-    font-weight: 600;
-    font-size: 16px;
+  color: #1565c0;
+  font-family: "Roboto";
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .row-giai {
-    background-color: #eaf4fa;
+  background-color: #eaf4fa;
 }
 
 .row-dau {
-    background-color: rgb(236, 236, 209);
+  background-color: rgb(236, 236, 209);
 }
 
 .row-duoi {
-    background-color: rgb(240, 173, 231);
+  background-color: rgb(240, 173, 231);
 }
 
 .row-loto {
-    background-color: rgb(188, 225, 248);
+  background-color: rgb(188, 225, 248);
 }
 
 .div-lichsu {
   padding-bottom: 10%;
+}
+
+.border-bottom {
+  border-bottom: 1px inset #000000;
+}
+
+.border-top {
+  border-top: 1px inset #000000;
+}
+
+.border-left {
+  border-left: 1px inset #000000;
+}
+
+.border-right {
+  border-right: 1px inset #000000;
 }

@@ -74,7 +74,7 @@ export class KetquaPage implements OnInit {
   arrayDit8 = [];
   arrayDit9 = [];
   arrayKq = [];
-  modelDate: any;
+  modelDateMb: any;
   valueDate: any;
   isError: boolean;
   error: boolean;
@@ -198,6 +198,9 @@ export class KetquaPage implements OnInit {
   isFirstTimeLoadingMt: boolean;
   onShowGridMt: boolean;
   locationMienTrung3: any;
+  maxDateMB: string;
+  thuMmienTrung: any;
+  thuMienNam: any;
   constructor(
     public datepipe: DatePipe,
     private requestService: RequestService,
@@ -271,10 +274,12 @@ export class KetquaPage implements OnInit {
     this.selectedSegment = 'mienbac';
     if (this.hour > 19) {
       this.reloadDataMienBac(this.ymd);
-      this.modelDate = this.ymd;
+      this.modelDateMb = this.ymd;
+      this.maxDateMB = this.ymd;
     } else {
       this.reloadDataMienBac(this.previousYdm);
-      this.modelDate = this.previousYdm;
+      this.modelDateMb = this.previousYdm;
+      this.maxDateMB = this.previousYdm;
     }
     if (this.hour > 18) {
       this.modelDateMnam = this.ymd;
@@ -373,10 +378,11 @@ export class KetquaPage implements OnInit {
   }
 
   onSuccessLoadDataMienNam(response) {
+    this.thuMienNam = response.ngaychot.split(',', 2)[0];
     this.isErrorMn = false;
     this.isFirstTimeLoadingMn = false;
     this.onShowGridMN = true;
-    if (response.ngaychot.substring( 0, response.ngaychot.indexOf(',')) === 'Thứ Bảy') {
+    if (response.ngaychot.substring(0, response.ngaychot.indexOf(',')) === 'Thứ Bảy') {
       this.isThuBayMn = true;
       this.location1MienNam1 = response.lotto[0].location;
       this.location1MienNam2 = response.lotto[1].location;
@@ -496,10 +502,12 @@ export class KetquaPage implements OnInit {
 
   onSuccessLoadDataMienTrung(response) {
     console.log(response);
+    this.thuMmienTrung = response.ngaychot.split(',', 2)[0];
     this.isErrorMt = false;
     this.isFirstTimeLoadingMt = false;
     this.onShowGridMT = true;
-    if (response.ngaychot.substring( 0, response.ngaychot.indexOf(',')) === 'Thứ Bảy' || response.ngaychot.substring( 0, response.ngaychot.indexOf(',')) === 'Thứ Năm') {
+    if (response.ngaychot.substring(0, response.ngaychot.indexOf(',')) === 'Thứ Bảy'
+      || response.ngaychot.substring(0, response.ngaychot.indexOf(',')) === 'Thứ Năm') {
       this.isThuBayMt = true;
       this.locationMienTrung1 = response.lotto[0].location;
       this.locationMienTrung2 = response.lotto[1].location;
@@ -636,11 +644,11 @@ export class KetquaPage implements OnInit {
       this.miennamShow = false;
       this.mientrungShow = false;
       if (this.hour > 19) {
-        this.modelDate = this.ymd;
+        this.modelDateMb = this.ymd;
       } else {
-        this.modelDate = this.previousYdm;
+        this.modelDateMb = this.previousYdm;
       }
-      this.reloadDataMienBac(this.modelDate);
+      this.reloadDataMienBac(this.modelDateMb);
     }
     if (this.selectedSegment === 'mientrung') {
       this.onShowGridMT = false;

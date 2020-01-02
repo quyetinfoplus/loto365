@@ -28,33 +28,33 @@
     <ion-grid>
       <ion-row class="row-ngay">
         <ion-col class="center">
-          <ion-text class="txt-ngay">Thứ 2 {{lichSu.ngaychot}}</ion-text>
+          <ion-text class="txt-ngay">{{lichSu.ngaychot | date: "dd-MM-y"}}</ion-text>
         </ion-col>
       </ion-row>
       <ion-row class="row-giai">
-        <ion-col size="2" class="col-db-center-1">
+        <ion-col size="2" class="border-left border-top border-right border-bottom center">
           <ion-text class="txt-dacbiet">
             ĐB
           </ion-text>
         </ion-col>
-        <ion-col class="col-db-center-2">
+        <ion-col class="border-top border-right border-bottom center">
           <ion-text class="txt-dacbiet">
             {{lichSu.kq0}}
           </ion-text>
         </ion-col>
       </ion-row>
       <ion-row class="row-giai" *ngIf="onNotShowDB">
-        <ion-col size="2" class="col-db-center-1">
+        <ion-col size="2" class="border-right border-left center">
           <ion-text class="txt-giai">
             Nhì
           </ion-text>
         </ion-col>
-        <ion-col class="col-db-center-2">
+        <ion-col class="border-right center">
           <ion-text class="txt-giai">
             {{lichSu.kq1}}
           </ion-text>
         </ion-col>
-        <ion-col class="col-db-center-2">
+        <ion-col class="border-right center">
           <ion-text class="txt-giai">
             {{lichSu.kq2}}
           </ion-text>

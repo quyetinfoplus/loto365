@@ -26,7 +26,7 @@
           <ion-item lines="none" class="itemDateTime">
             <img class="img-calendar" src="assets/img/calendar.svg" />
             <ion-text class="txt-date-time">{{thu}}</ion-text>
-            <ion-datetime displayFormat="DD-MM-YYYY" max="{{ymd}}" [(ngModel)]="modelDate"
+            <ion-datetime displayFormat="DD-MM-YYYY" max="{{maxDateMB}}" [(ngModel)]="modelDateMb"
               (ionChange)="onChangeDateTime($event)">
             </ion-datetime>
           </ion-item>
@@ -306,7 +306,7 @@
         <ion-col mode="ios" class="col-arrow-datetime">
           <ion-item lines="none" class="itemDateTime">
             <img class="img-calendar" src="assets/img/calendar.svg" />
-            <ion-text class="txt-date-time">{{thu}}</ion-text>
+            <ion-text class="txt-date-time">{{thuMmienTrung}}</ion-text>
             <ion-datetime displayFormat="DD-MM-YYYY" max="{{ymd}}" [(ngModel)]="modelDateMtrung"
               (ionChange)="onChangeDateTimeMienTrung($event)">
             </ion-datetime>
@@ -314,15 +314,11 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <ion-grid  *ngIf="onShowGridMT">
+    <ion-grid *ngIf="onShowGridMT">
       <ion-row>
         <ion-col class="col-center border-top-left">
           <ion-text class="text-datetime-mien-nam location">
-            Thứ 2
-          </ion-text>
-          <br>
-          <ion-text class="text-datetime-mien-nam location">
-            12-03-2019
+            Giải
           </ion-text>
         </ion-col>
         <ion-col class="col-center border-top-left">
@@ -331,7 +327,7 @@
         <ion-col class="col-center border-top-left-right">
           <ion-text class="location">{{locationMienTrung2}}</ion-text>
         </ion-col>
-        <ion-col class="col-center border-top-right"  *ngIf="isThuBayMt">
+        <ion-col class="col-center border-top-right" *ngIf="isThuBayMt">
           <ion-text class="location">{{locationMienTrung3}}</ion-text>
         </ion-col>
       </ion-row>
@@ -533,7 +529,7 @@
         <ion-col mode="ios" class="col-arrow-datetime">
           <ion-item lines="none" class="itemDateTime">
             <img class="img-calendar" src="assets/img/calendar.svg" />
-            <ion-text class="txt-date-time">{{thu}}</ion-text>
+            <ion-text class="txt-date-time">{{thuMienNam}}</ion-text>
             <ion-datetime displayFormat="DD-MM-YYYY" max="{{ymd}}" [(ngModel)]="modelDateMnam"
               (ionChange)="onChangeDateTimeMienNam($event)">
             </ion-datetime>
@@ -545,11 +541,7 @@
       <ion-row>
         <ion-col class="col-center border-top-left">
           <ion-text class="text-datetime-mien-nam location">
-            Thứ 2
-          </ion-text>
-          <br>
-          <ion-text class="text-datetime-mien-nam location">
-            12-03-2019
+            Giải
           </ion-text>
         </ion-col>
         <ion-col class="col-center border-top-left">
@@ -568,7 +560,7 @@
           </ion-text>
         </ion-col>
         <ion-col class="col-center border-top-right" *ngIf="isThuBayMn">
-          <ion-text  class="location">
+          <ion-text class="location">
             {{location1MienNam4}}
           </ion-text>
         </ion-col>
