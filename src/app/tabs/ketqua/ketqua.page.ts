@@ -294,7 +294,7 @@ export class KetquaPage implements OnInit {
     const urlLoadDataKetQua = this.envService.API_URL + this.envService.URL_LOAD_DATA_KET_QUA_MB;
     const params = [];
     params.push({ key: 'ngaychot', value: ngaychot });
-    this.requestService.get(urlLoadDataKetQua, params, undefined,
+    this.requestService.getWithAuth(urlLoadDataKetQua, params, undefined,
       (response) => this.onSuccessLoadDataMienBac(response),
       (error) => this.onErrorMienBac(error),
       () => { });
@@ -365,7 +365,7 @@ export class KetquaPage implements OnInit {
     const urlLoadDataKetQua = this.envService.API_URL + this.envService.URL_LOAD_DATA_KET_QUA_MN;
     const params = [];
     params.push({ key: 'ngaychot', value: ngaychot });
-    this.requestService.get(urlLoadDataKetQua, params, undefined,
+    this.requestService.getWithAuth(urlLoadDataKetQua, params, undefined,
       (response) => this.onSuccessLoadDataMienNam(response),
       (error) => this.onErrorMienNam(error),
       () => { });
@@ -490,7 +490,7 @@ export class KetquaPage implements OnInit {
     const urlLoadDataKetQua = this.envService.API_URL + this.envService.URL_LOAD_DATA_KET_QUA_MT;
     const params = [];
     params.push({ key: 'ngaychot', value: ngaychot });
-    this.requestService.get(urlLoadDataKetQua, params, undefined,
+    this.requestService.getWithAuth(urlLoadDataKetQua, params, undefined,
       (response) => this.onSuccessLoadDataMienTrung(response),
       (error) => this.onErrorMientrung(error),
       () => { });

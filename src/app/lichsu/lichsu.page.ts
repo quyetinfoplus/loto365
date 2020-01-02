@@ -48,7 +48,7 @@ export class LichsuPage implements OnInit {
     const params = [];
     params.push({ key: 'limit', value: this.limit });
     params.push({ key: 'skip', value: this.currentTotal });
-    this.requestService.get(urlLoadLichSu, params, undefined,
+    this.requestService.getWithAuth(urlLoadLichSu, params, undefined,
       (response) => this.onSuccess(response, event),
       (error) => this.onError(error, event),
       () => { });
