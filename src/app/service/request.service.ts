@@ -46,7 +46,6 @@ export class RequestService {
         headersRequest = headersRequest.set(h.key, h.value);
       }
     }
-
     this.http.post(url, body, { headers: headersRequest, params: paramsRequest }).subscribe(
       (response) => onSuccess(response),
       (error) => onError(error),
@@ -61,7 +60,7 @@ export class RequestService {
         paramsRequest = paramsRequest.set(p.key, p.value);
       }
     }
-    this.http.put(url, body, {params: paramsRequest }).subscribe(
+    this.http.put(url, body, { params: paramsRequest }).subscribe(
       (response) => onSuccess(response),
       (error) => onError(error),
       () => onComplete()
@@ -82,7 +81,7 @@ export class RequestService {
       }
     }
     headersRequest = headersRequest.set(this.env.AUTH_PARAM, this.env.AUTH_PREFIX +
-    this.localStorageService.get(this.localStorageService.TOKEN_LABEL));
+      this.localStorageService.get(this.localStorageService.ACCESS_TOKEN));
     this.http.get(url, { headers: headersRequest, params: paramsRequest }).subscribe(
       (response) => onSuccess(response),
       (error) => onError(error),
@@ -103,7 +102,7 @@ export class RequestService {
         headersRequest = headersRequest.set(h.key, h.value);
       }
     }
-    headersRequest = headersRequest.set(this.env.AUTH_PARAM, this.localStorageService.get(this.localStorageService.TOKEN_LABEL));
+    headersRequest = headersRequest.set(this.env.AUTH_PARAM, this.localStorageService.get(this.localStorageService.ACCESS_TOKEN));
     this.http.post(url, body, { headers: headersRequest, params: paramsRequest }).subscribe(
       (response) => onSuccess(response),
       (error) => onError(error),
@@ -124,7 +123,7 @@ export class RequestService {
         headersRequest = headersRequest.set(h.key, h.value);
       }
     }
-    headersRequest = headersRequest.set(this.env.AUTH_PARAM, this.localStorageService.get(this.localStorageService.TOKEN_LABEL));
+    headersRequest = headersRequest.set(this.env.AUTH_PARAM, this.localStorageService.get(this.localStorageService.ACCESS_TOKEN));
     this.http.put(url, body, { headers: headersRequest, params: paramsRequest }).subscribe(
       (response) => onSuccess(response),
       (error) => onError(error),
@@ -145,7 +144,7 @@ export class RequestService {
         headersRequest = headersRequest.set(h.key, h.value);
       }
     }
-    headersRequest = headersRequest.set(this.env.AUTH_PARAM, this.localStorageService.get(this.localStorageService.TOKEN_LABEL));
+    headersRequest = headersRequest.set(this.env.AUTH_PARAM, this.localStorageService.get(this.localStorageService.ACCESS_TOKEN));
     this.http.delete(url, { headers: headersRequest, params: paramsRequest }).subscribe(
       (response) => onSuccess(response),
       (error) => onError(error),

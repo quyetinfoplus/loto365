@@ -9,9 +9,7 @@ export class LocalstorageService {
   USER_EMAIL = 'user_email';
   USER_ID = 'user_id';
   USER_NAME = 'user_name';
-  
-  // Author
-  public TOKEN_LABEL = 'token';
+
   constructor(
   ) { }
 
