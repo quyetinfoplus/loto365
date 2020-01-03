@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
-import { Platform, MenuController, AlertController, NavController } from '@ionic/angular';
+import { Platform, MenuController, AlertController, NavController, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { LocalstorageService } from './service/localstorage.service';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { ThongtincanhanPage } from './thongtincanhan/thongtincanhan.page';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent {
     private navControl: NavController,
     private alertController: AlertController,
     private googlePlus: GooglePlus,
+    private modalController: ModalController,
     private localStorageservice: LocalstorageService
   ) {
     this.initializeApp();
@@ -44,8 +46,21 @@ export class AppComponent {
       this.menuCtrl.close();
     }
     if (page === 'logout') {
+      this.menuCtrl.close();
       this.logout();
     }
+    if (page === 'thongtincanhan') {
+      this.menuCtrl.close();
+      this.onShowThongTin();
+    }
+  }
+
+  async onShowThongTin() {
+    const modal = await this.modalController.create({
+      component: ThongtincanhanPage,
+      cssClass: 'modalThongTinCaNhan'
+    });
+    return await modal.present();
   }
 
   logout() {

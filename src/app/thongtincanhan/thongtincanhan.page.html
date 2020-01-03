@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-title class="text-toolbar">Người Dùng</ion-title>
+    <ion-buttons mode="ios" slot="end" class="button-close">
+      <ion-icon name="close" class="icon-close" (click)="dismiss()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="grid">
+    <ion-row>
+      <ion-col size="3" class="right">
+        <ion-text class="label-thongtin">ID</ion-text>
+      </ion-col>
+      <ion-col size="9" class="left">
+        <ion-text class="txt-thongtin margin-10">{{userId}}</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3" class="right">
+        <ion-text class="label-thongtin">Tên</ion-text>
+      </ion-col>
+      <ion-col size="9" class="left">
+        <ion-text class="txt-thongtin margin-10">{{userName}}</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3" class="right">
+        <ion-text class="label-thongtin">Email</ion-text>
+      </ion-col>
+      <ion-col size="9" class="left">
+        <ion-text class="txt-thongtin margin-10">{{userEmail}}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
