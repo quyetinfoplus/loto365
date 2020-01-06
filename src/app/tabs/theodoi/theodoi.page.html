@@ -45,6 +45,7 @@
       <ion-row>
         <ion-col size="11">
           <ion-label class="label-name-theo-doi">{{theodoiArray.name}}</ion-label>
+          <ion-label class="label-name-theo-doi" *ngIf="theodoiArray.name === ''">ThanLo</ion-label>
         </ion-col>
         <ion-col size="1">
           <ion-label>{{i}}</ion-label>
@@ -60,48 +61,48 @@
           <ion-label class="label-lo-theo-doi">Lô: </ion-label>
           <ion-label class="label-result">{{theodoiArray.lo}}</ion-label>
         </ion-col>
-        <ion-col size="3.5">
+        <ion-col *ngIf="theodoiArray.lodau[0] !== ''">
           <ion-label class="label-lo-theo-doi">Lô Đầu: </ion-label>
           <ion-label class="label-result">{{theodoiArray.lodau}}</ion-label>
         </ion-col>
-        <ion-col size="3.5">
+        <ion-col *ngIf="theodoiArray.lodit[0] !== ''">
           <ion-label class="label-lo-theo-doi">Lô Đít: </ion-label>
           <ion-label class="label-result">{{theodoiArray.lodit}}</ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
+        <ion-col size="5" *ngIf="theodoiArray.de !== null">
           <ion-label class="label-de-theo-doi">Đề: </ion-label>
           <ion-label class="label-result">{{theodoiArray.de}}</ion-label>
         </ion-col>
-        <ion-col size="3.5">
+        <ion-col size="5" *ngIf="theodoiArray.dedau[0] !== ''">
           <ion-label class="label-de-theo-doi">Đề đầu: </ion-label>
           <ion-label class="label-result">{{theodoiArray.dedau}}</ion-label>
         </ion-col>
-        <ion-col size="3.5">
+        <ion-col *ngIf="theodoiArray.dedit[0] !== ''">
           <ion-label class="label-de-theo-doi">Đề đít: </ion-label>
           <ion-label class="label-result">{{theodoiArray.dedit}}</ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="5">
+        <ion-col size="5" *ngIf="theodoiArray.lobt !== ''">
           <ion-label class="label-lo-theo-doi">BT Lô: </ion-label>
           <ion-label class="label-result">{{theodoiArray.lobt}}</ion-label>
         </ion-col>
-        <ion-col>
+        <ion-col *ngIf="theodoiArray.ratio_lobt !== ''">
           <ion-label class="label-lo-theo-doi">Rate Lô: </ion-label>
-          <ion-label class="label-result" *ngIf="theodoiArray.ratio_lobt !== ''">({{theodoiArray.ratio_lobt}})
+          <ion-label class="label-result">({{theodoiArray.ratio_lobt}})
           </ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="5">
+        <ion-col size="5" *ngIf="theodoiArray.debt !== ''">
           <ion-label class="label-de-theo-doi">BT Đề: </ion-label>
           <ion-label class="label-result">{{theodoiArray.debt}}</ion-label>
         </ion-col>
-        <ion-col>
+        <ion-col *ngIf="theodoiArray.ratio_debt !== ''">
           <ion-label class="label-de-theo-doi">Rate Đề: </ion-label>
-          <ion-label class="label-result" *ngIf="theodoiArray.ratio_debt !== ''">({{theodoiArray.ratio_debt}})
+          <ion-label class="label-result">({{theodoiArray.ratio_debt}})
           </ion-label>
         </ion-col>
       </ion-row>
