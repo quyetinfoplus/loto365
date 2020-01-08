@@ -50,7 +50,7 @@ export class ThongkePage implements OnInit {
     const params = [];
     params.push({ key: 'limit', value: this.limit });
     params.push({ key: 'skip', value: this.currentTotal });
-    this.requestService.get(urlLoadThongKe, params, undefined,
+    this.requestService.getWithAuth(urlLoadThongKe, params, undefined,
       (response) => this.onSuccess(response),
       (error) => this.onError(error),
       () => { });

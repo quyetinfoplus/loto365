@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'thongke',
     loadChildren: () => import('./thongke/thongke.module').then( m => m.ThongkePageModule)
   },
+  {
+    path: 'thongtincanhan',
+    loadChildren: () => import('./thongtincanhan/thongtincanhan.module').then( m => m.ThongtincanhanPageModule)
+  },
 ];
 
 @NgModule({

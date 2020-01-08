@@ -5,6 +5,7 @@ import { NavController } from '@ionic/angular';
 import { AlertService } from '../service/alert.service';
 import { LocalstorageService } from '../service/localstorage.service';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { EnvService } from '../service/env.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -21,33 +22,40 @@ export class LoginPage implements OnInit {
     private fb: Facebook,
     private requestService: RequestService,
     private alertService: AlertService,
+    private envService: EnvService,
     private localStorageSerivce: LocalstorageService,
     private googlePlus: GooglePlus,
-    private navCrt: NavController) { }
+    private navCrt: NavController) {
+  }
 
   ngOnInit() {
   }
 
-  loginFb() {
-    this.fb.login(['public_profile', 'user_friends', 'email'])
-      .then((res: FacebookLoginResponse) => {
-        if (res.status === 'connected') {
-          this.getData(res.authResponse.accessToken);
-          this.accessToken = res.authResponse.accessToken;
-          this.alertService.presentToast('Đăng nhập thành công');
-          this.navCrt.navigateRoot('/tabs/navi');
-        } else {
-          this.navCrt.navigateRoot('/tabs/navi');
-          this.alertService.presentToast('Đăng nhập thất bại');
-        }
-        console.log('Logged into Facebook!', res);
-      })
-      .catch(e => {
-        this.navCrt.navigateRoot('/tabs/navi');
-        this.alertService.presentToast('Đăng nhập thất bại');
-        console.log('Error logging into Facebook', e);
-      });
+
+  postToken() {
+    const urlPostToken = this.envService.API_URL + this.envService.URL_POST_TOKEN;
+    const body = {
+      accessToken: this.localStorageSerivce.get(this.localStorageSerivce.ACCESS_TOKEN),
+      displayName: this.localStorageSerivce.get(this.localStorageSerivce.USER_NAME),
+      email: this.localStorageSerivce.get(this.localStorageSerivce.USER_EMAIL),
+      userId: this.localStorageSerivce.get(this.localStorageSerivce.USER_ID)
+    };
+    this.requestService.post(urlPostToken, body, undefined, undefined,
+      (reponse) => this.onSuccessPostToken(reponse),
+      (error) => this.onErrorPostToken(error),
+      () => { });
   }
+
+  onErrorPostToken(error: any) {
+    console.log(error);
+    this.alertService.presentToast('Đăng nhập thất bại');
+  }
+
+  onSuccessPostToken(reponse: any) {
+    this.alertService.presentToast('Đăng nhập thành công');
+    this.navCrt.navigateRoot('/tabs/navi');
+  }
+
 
   loginGoogle() {
     this.googlePlus.login({})
@@ -60,15 +68,24 @@ export class LoginPage implements OnInit {
         this.localStorageSerivce.set(this.localStorageSerivce.USER_EMAIL, this.emailUser);
         this.localStorageSerivce.set(this.localStorageSerivce.USER_ID, this.idUser);
         this.localStorageSerivce.set(this.localStorageSerivce.USER_NAME, this.nameUser);
-        this.navCrt.navigateRoot('/tabs/navi');
-        this.alertService.presentToast('Đăng nhập thành công');
-        console.log(res);
+        this.postToken();
       })
       .catch(err => {
-        this.alertService.presentToast('Đăng nhập thất bại');
         console.error(err);
       });
   }
+
+  loginFb() {
+    this.fb.login(['public_profile', 'user_friends', 'email'])
+      .then((res: FacebookLoginResponse) => {
+        this.getData(res.authResponse.accessToken);
+        this.accessToken = res.authResponse.accessToken;
+      })
+      .catch(e => {
+        this.fb.logout();
+      });
+  }
+
 
   getData(accessToken: any) {
     const url = 'https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token=' + accessToken;
@@ -90,6 +107,6 @@ export class LoginPage implements OnInit {
     this.localStorageSerivce.set(this.localStorageSerivce.USER_EMAIL, this.emailUser);
     this.localStorageSerivce.set(this.localStorageSerivce.USER_ID, this.idUser);
     this.localStorageSerivce.set(this.localStorageSerivce.USER_NAME, this.nameUser);
+    this.postToken();
   }
-
 }

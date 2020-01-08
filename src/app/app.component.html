@@ -2,8 +2,8 @@
   <ion-split-pane>
     <ion-menu class="menu" menu-id="sideMenu">
       <ion-header>
-        <ion-toolbar class="toolbar-menu">
-          <label>Loto 365</label>
+        <ion-toolbar>
+          <label class="text-toolbar txt-toolbar-menu">{{userName}}Chu Van Quyet </label>
         </ion-toolbar>
       </ion-header>
       <ion-content class="content-menu">
@@ -14,15 +14,9 @@
             </ion-label>
             <ion-ripple-effect></ion-ripple-effect>
           </ion-item>
-          <ion-item mode="md" class="item-sidemenu" (click)="onSideMenuClick('change_pin')" detail button>
+          <ion-item mode="md" class="item-sidemenu" (click)="onSideMenuClick('thongtincanhan')" detail button>
             <ion-label color="primary">
-              Select 2
-            </ion-label>
-            <ion-ripple-effect></ion-ripple-effect>
-          </ion-item>
-          <ion-item mode="md" class="item-sidemenu" (click)="onSideMenuClick('change_lang')" detail button>
-            <ion-label color="primary">
-              Select 3
+              Thông tin cá nhân
             </ion-label>
             <ion-ripple-effect></ion-ripple-effect>
           </ion-item>

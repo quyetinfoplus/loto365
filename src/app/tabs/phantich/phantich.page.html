@@ -5,7 +5,8 @@
         <ion-label class="do-dai-cua-cau">Độ dài cầu</ion-label>
       </ion-col>
       <ion-col size="6.5">
-        <ion-range class="ion-range" [(ngModel)]="rangDoDaiCau"  min="1" max="{{doDaiCauMax}}" pin="true" (ionChange)="onChangeRang($event)" ></ion-range>
+        <ion-range class="ion-range" [(ngModel)]="rangDoDaiCau" min="1" max="{{doDaiCauMax}}" pin="true"
+          (ionChange)="onChangeRang($event)"></ion-range>
       </ion-col>
       <ion-col size="2.5">
         <ion-text class="txt-do-dai-cau">{{doDaiCau}}</ion-text>
@@ -71,6 +72,9 @@
           {{number}}</ion-text>
       </ion-col>
     </ion-row>
+    <div class="center">
+      <ion-spinner name="lines" *ngIf="arrayNumber.length <= 0"></ion-spinner>
+    </div>
   </ion-grid>
   <div class="div-text-kq-soi-cau">
     <ion-text class="text-kq-soi-cau">Kết quả soi cầu ngày {{currentDay}} tìm được {{soCau}} cầu có độ dài =
@@ -83,7 +87,14 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-row class="ion-align-items-center ion-justify-content-center" style='margin-top: 30%;' *ngIf="onShowLoading">
-    <ion-spinner name="lines"></ion-spinner>
+  <ion-row class="ion-align-items-center ion-justify-content-center" style='margin-top: 30%;'>
+    <ion-spinner name="lines" *ngIf="onShowLoading"></ion-spinner>
+    <div class="error-info" *ngIf="errorinfo">
+      <ion-text>Error happens.Try again !</ion-text>
+      <br>
+      <ion-button shape="round" color="light" (click)="retry()">
+        Try again
+      </ion-button>
+    </div>
   </ion-row>
 </ion-content>
