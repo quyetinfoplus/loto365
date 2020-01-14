@@ -35,7 +35,7 @@
   </ion-grid>
   <ion-item lines="none" class="item-date-dschot">
     <ion-label class="label-danh-sach-chot">Danh Sách chốt ngày</ion-label>
-    <ion-datetime class="datetime-dschot" displayFormat="DD-MM-YYYY" max="{{dateCurrent}}" value="{{dateCurrent}}"
+    <ion-datetime class="datetime-dschot" displayFormat="DD-MM-YYYY" max="{{dateCurrent}}" value="{{valueDateDsChot}}"
       (ionChange)="onChangeDateDsChot($event)">
     </ion-datetime>
     <ion-icon class="icon-create" name="calendar"></ion-icon>
@@ -57,7 +57,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="5">
+        <ion-col size="5" *ngIf="theodoiArray.lodau[0] !== ''">
           <ion-label class="label-lo-theo-doi">Lô: </ion-label>
           <ion-label class="label-result">{{theodoiArray.lo}}</ion-label>
         </ion-col>
@@ -113,7 +113,7 @@
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Load more...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  <ion-row class="ion-align-items-center ion-justify-content-center" style='height: 100%'
+  <ion-row class="ion-align-items-center ion-justify-content-center" style='margin-top: 30%'
     *ngIf="theodoiArrays.length <= 0">
     <ion-spinner class="spinner" name="lines" *ngIf="isFirstTimeLoading"></ion-spinner>
     <div class="no-data" *ngIf="noData">

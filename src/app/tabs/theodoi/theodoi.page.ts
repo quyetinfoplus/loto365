@@ -5,7 +5,7 @@ import { EnvService } from 'src/app/service/env.service';
 import { DatePipe } from '@angular/common';
 import { Theodoi } from 'src/app/model/theodoi';
 import ValidationUtil from 'src/app/service/util/validation';
-
+import DateUtil from 'src/app/date/date';
 @Component({
   selector: 'app-theodoi',
   templateUrl: './theodoi.page.html',
@@ -57,7 +57,6 @@ export class TheodoiPage implements OnInit {
     } else {
       this.month = '0' + (this.date.getMonth() + 1).toString();
     }
-    this.dateTrending = this.dateCurrent;
     this.year = this.date.getFullYear();
     this.ymd = this.year.toString() + '-' + this.month.toString() + '-' + this.day.toString();
   }
@@ -71,8 +70,18 @@ export class TheodoiPage implements OnInit {
     if (ValidationUtil.isEmptyStr(this.valueDateDsChot)) {
       this.valueDateDsChot = this.ymd;
     }
-    this.reloadTheoDoi(this.valueSearch);
-    this.onReloadTrending(this.ymd);
+
+    if (this.date.getHours() >= 19) {
+      this.valueDateDsChot = DateUtil.getNextDay();
+      this.dateTrending = DateUtil.getNextDay();
+      this.reloadTheoDoi(this.valueSearch);
+      this.onReloadTrending(this.dateTrending);
+    } else {
+      this.valueDateDsChot = this.ymd;
+      this.dateTrending = this.dateCurrent;
+      this.reloadTheoDoi(this.valueSearch);
+      this.onReloadTrending(this.dateTrending);
+    }
   }
 
   reloadTheoDoi(valueSearch) {
@@ -168,6 +177,7 @@ export class TheodoiPage implements OnInit {
   }
 
   onSuccessLoadDataTheoDoi(response, event) {
+    console.log(response);
     this.isFirstTimeLoading = false;
     this.errorinfo = false;
     if (Object.keys(response).length <= 0) {
