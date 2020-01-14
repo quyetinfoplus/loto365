@@ -11,7 +11,7 @@ export class LocalstorageService {
   USER_NAME = 'user_name';
 
   constructor(
-  ) {}
+  ) { }
 
   set(key: any, value: any) {
     localStorage.setItem(key, value);

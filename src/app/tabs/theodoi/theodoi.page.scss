@@ -1,108 +1,114 @@
 .label-name-theo-doi {
-    color: darkgreen;
-    font-size: 16px;
-    font-weight: bold;
+  color: darkgreen;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .label-time-theo-doi {
-    color: grey;
-    font-size: 12px;
+  color: grey;
+  font-size: 12px;
 }
 
 .col-time-theo-doi {
-    text-align: right;
+  text-align: right;
 }
 
 .label-lo-theo-doi {
-    color: blue;
+  color: blue;
 }
 
 .label-result {
-    color: black;
+  color: black;
 }
 
 .label-de-theo-doi {
-    color: red;
+  color: red;
 }
 
 .card {
-    --background:ghostwhite ;
+  --background: ghostwhite;
 }
 
+.center {
+  text-align: center;
+}
+
+.error-info {
+  text-align: center;
+}
 
 .item-date-trending {
-    --background: #eeeeee ;
+  --background: #eeeeee;
 }
 
 .row-header-trending {
-    background-color: #eeeeee;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border: 1px double grey;
+  background-color: #eeeeee;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: 1px double grey;
 }
 
 .grid-content-trending {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    border: 1px double grey;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 1px double grey;
 }
 
 .date-trending {
-    font-size: 14px;
-    text-decoration: underline;
+  font-size: 14px;
+  text-decoration: underline;
 }
 
 .item-header-trending {
-    --background: #eeeeee;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border: 1px double grey;
+  --background: #eeeeee;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: 1px double grey;
 }
 
 .txt-title-trending {
-    max-width: 150px;
-    color: #000000;
-    font-size: 14px;
-    font-weight: 600;
+  max-width: 150px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .text-trending {
-    color: darkslategray;
-    font-size: 14px;
-    font-weight: 600;
+  color: darkslategray;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .xem-them {
-    margin-left: 10px;
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: underline;
+  margin-left: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .label-danh-sach-chot {
-    font-size: 14px;
-    font-weight: 600;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .datetime-dschot {
-    font-size: 14px;
-    text-decoration: underline;
+  font-size: 14px;
+  text-decoration: underline;
 }
 
 .item-date-dschot {
-    margin-top: 5%;
-    --background: #eeeeee;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-radius: 5px;
-    border: 1px double grey;
+  margin-top: 5%;
+  --background: #eeeeee;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  border: 1px double grey;
 }
 
 .icon-create {
-    font-size: 16px;
+  font-size: 16px;
 }
-

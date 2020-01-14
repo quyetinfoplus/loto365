@@ -10,9 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DatePipe } from '@angular/common';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { ThongtincanhanPage } from './thongtincanhan/thongtincanhan.page';
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, ThongtincanhanPage],
+  entryComponents: [ThongtincanhanPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
